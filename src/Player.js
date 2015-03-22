@@ -4,6 +4,8 @@ var Player = cc.Sprite.extend({
         this.initWithFile( 'res/images/player.png' );
         this.x = x;
         this.y = y;
+        this.setAnchorPoint(cc.p(0.5,0.5));
+
         this.nextDirection = Player.DIR.STILL;
         this.direction = Player.DIR.STILL;
     },
@@ -31,6 +33,11 @@ var Player = cc.Sprite.extend({
         }
         this.updatePosition();
         this.direction = this.nextDirection;
+    },
+    setRotation: function(angle){
+    	console.log("test");
+		var playerRotate = cc.RotateBy.create(0.1,angle);
+		this.runAction(playerRotate);
     },
     updatePosition: function() {
         this.setPosition( cc.p( this.x, this.y ) );

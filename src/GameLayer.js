@@ -23,18 +23,24 @@ var GameLayer = cc.LayerColor.extend({
     onKeyDown: function( keyCode, event ) {
 		console.log( 'Down: ' + keyCode.toString() );
 		switch( keyCode ) {
-        case 65:
+        case cc.KEY.a:
             this.player.setDirection( Player.DIR.LEFT );
             break;
-        case 68:
+        case cc.KEY.d:
             this.player.setDirection( Player.DIR.RIGHT );
             break;
-        case 87:
+        case cc.KEY.w:
             this.player.setDirection( Player.DIR.UP );
             break;
-        case 83:
+        case cc.KEY.s:
             this.player.setDirection( Player.DIR.DOWN );
             break;
+        case cc.KEY.left:
+        	this.player.setRotation(-17);
+        	break;
+        case cc.KEY.right:
+        	this.player.setRotation(17);
+        	break;
         }
 
     },
