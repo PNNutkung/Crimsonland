@@ -5,6 +5,8 @@ var GameLayer = cc.LayerColor.extend({
 		this.player = new Player();
 		this.player.setPosition( cc.p(400,300) );
 		this.addChild( this.player );
+		this.direction = Player.DIR.UP;
+		this.player.scheduleUpdate();
 	},
 	addKeyboardHandlers: function() {
         var self = this;
@@ -17,6 +19,28 @@ var GameLayer = cc.LayerColor.extend({
                 self.onKeyUp( keyCode, event );
             }
         }, this);
+    },
+    onKeyDown: function( keyCode, event ) {
+		console.log( 'Down: ' + keyCode.toString() );
+		switch( keyCode ) {
+        case 65:
+            this.player.setDirection( Player.DIR.LEFT );
+            break;
+        case 68:
+            this.player.setDirection( Player.DIR.RIGHT );
+            break;
+        case 87:
+            this.player.setDirection( Player.DIR.UP );
+            break;
+        case 83:
+            this.player.setDirection( Player.DIR.DOWN );
+            break;
+        }
+
+    },
+    onKeyUp: function( keyCode, event ) {
+		console.log( 'Up: ' + keyCode.toString() );
+		this.player.setNextDirection( Player.DIR.STILL );
     }
 });
 
