@@ -1,11 +1,12 @@
 var Player = cc.Sprite.extend({
+	_currentRotation:0,
 	ctor: function( x, y ) {
         this._super();
         this.initWithFile( 'res/images/player.png' );
         this.x = x;
         this.y = y;
+        this.setTag = "player";
         this.setAnchorPoint(cc.p(0.5,0.5));
-
         this.nextDirection = Player.DIR.STILL;
         this.direction = Player.DIR.STILL;
     },
@@ -31,16 +32,24 @@ var Player = cc.Sprite.extend({
             this.x += Player.MOVE_STEP;
             break;
         }
+        this.setRotation(this._currentRotation);
         this.updatePosition();
         this.direction = this.nextDirection;
     },
-    setRotation: function(angle){
-    	console.log("test");
-		var playerRotate = cc.RotateBy.create(0.1,angle);
-		this.runAction(playerRotate);
-    },
     updatePosition: function() {
         this.setPosition( cc.p( this.x, this.y ) );
+    },
+    handleKey: function(e){
+        if(e === cc.KEY.left)
+        {
+            this._currentRotation--;
+
+        }	
+        else if(e === cc.KEY.right)
+            this._currentRotation++;
+
+        if(this._currentRotation < 0) this._currentRotation = 360;
+        if(this._currentRotation > 360) this._currentRotation = 0;
     }
 
 });
