@@ -8,14 +8,10 @@ var Player = cc.Sprite.extend({
         this.y = y;
         this.setTag = "player";
         this.setAnchorPoint(cc.p(0.5,0.5));
-        this.nextDirection = Player.DIR.STILL;
         this.direction = Player.DIR.STILL;
     },
     setDirection: function( dir ) {
         this.direction = dir;
-    },
-    setNextDirection: function( dir ) {
-        this.nextDirection = dir;
     },
     update: function( dt ) {
         if ((CL.KEYS[cc.KEY.w]) && this.y <= screenHeight) {
@@ -30,19 +26,18 @@ var Player = cc.Sprite.extend({
         if ((CL.KEYS[cc.KEY.d]) && this.x <= screenWidth) {
             this.x += dt * this.speed;
         }
-        if(CL.KEYS[cc.KEY.left])
-        {
-            this._currentRotation--;
+        if(CL.KEYS[cc.KEY.left]){
+            this._currentRotation-= 8;
         }   
-        else if(CL.KEYS[cc.KEY.right])
-            this._currentRotation++;
+        else if(CL.KEYS[cc.KEY.right]){
+            this._currentRotation+= 8;
+        }
 
         if(this._currentRotation < 0) this._currentRotation = 360;
         if(this._currentRotation > 360) this._currentRotation = 0;
         
         this.setRotation(this._currentRotation);
         this.updatePosition();
-        this.direction = this.nextDirection;
     },
     updatePosition: function() {
         this.setPosition( cc.p( this.x, this.y ) );
