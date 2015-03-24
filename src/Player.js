@@ -1,5 +1,6 @@
 var Player = cc.Sprite.extend({
 	_currentRotation:0,
+    speed:220,
 	ctor: function( x, y ) {
         this._super();
         this.initWithFile( 'res/images/player.png' );
@@ -17,39 +18,34 @@ var Player = cc.Sprite.extend({
         this.nextDirection = dir;
     },
     update: function( dt ) {
-
-        switch ( this.direction ) {
-        case Player.DIR.UP:
-            this.y += Player.MOVE_STEP;
-            break;
-        case Player.DIR.DOWN:
-            this.y -= Player.MOVE_STEP;
-            break;
-        case Player.DIR.LEFT:
-            this.x -= Player.MOVE_STEP;
-            break;
-        case Player.DIR.RIGHT:
-            this.x += Player.MOVE_STEP;
-            break;
+        if ((CL.KEYS[cc.KEY.w]) && this.y <= screenHeight) {
+            this.y += dt * this.speed;
         }
+        if ((CL.KEYS[cc.KEY.s]) && this.y >= 0) {
+            this.y -= dt * this.speed;
+        }
+        if ((CL.KEYS[cc.KEY.a]) && this.x >= 0) {
+            this.x -= dt * this.speed;
+        }
+        if ((CL.KEYS[cc.KEY.d]) && this.x <= screenWidth) {
+            this.x += dt * this.speed;
+        }
+        if(CL.KEYS[cc.KEY.left])
+        {
+            this._currentRotation--;
+        }   
+        else if(CL.KEYS[cc.KEY.right])
+            this._currentRotation++;
+
+        if(this._currentRotation < 0) this._currentRotation = 360;
+        if(this._currentRotation > 360) this._currentRotation = 0;
+        
         this.setRotation(this._currentRotation);
         this.updatePosition();
         this.direction = this.nextDirection;
     },
     updatePosition: function() {
         this.setPosition( cc.p( this.x, this.y ) );
-    },
-    handleKey: function(e){
-        if(e === cc.KEY.left)
-        {
-            this._currentRotation--;
-
-        }	
-        else if(e === cc.KEY.right)
-            this._currentRotation++;
-
-        if(this._currentRotation < 0) this._currentRotation = 360;
-        if(this._currentRotation > 360) this._currentRotation = 0;
     }
 
 });

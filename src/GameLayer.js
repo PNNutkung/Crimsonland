@@ -14,13 +14,15 @@ var GameLayer = cc.LayerColor.extend({
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
             onKeyPressed : function( keyCode, event ) {
-                self.onKeyDown( keyCode, event );
+                //self.onKeyDown( keyCode, event );
+                CL.KEYS[keyCode] = true;
             },
             onKeyReleased: function( keyCode, event ) {
-                self.onKeyUp( keyCode, event );
+                //self.onKeyUp( keyCode, event );
+                CL.KEYS[keyCode] = false;
             }
         }, this);
-    },
+    }/*,
     onKeyDown: function( keyCode, event ) {
 		console.log( 'Down: ' + keyCode.toString() );
 		switch( keyCode ) {
@@ -47,7 +49,7 @@ var GameLayer = cc.LayerColor.extend({
     onKeyUp: function( keyCode, event ) {
 		console.log( 'Up: ' + keyCode.toString() );
 		this.player.setNextDirection( Player.DIR.STILL );
-    }
+    }*/
 });
 
 var StartScene = cc.Scene.extend({
