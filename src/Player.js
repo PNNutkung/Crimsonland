@@ -10,6 +10,16 @@ var Player = cc.Sprite.extend({
         this.setAnchorPoint(cc.p(0.5,0.5));
         this.direction = Player.DIR.STILL;
     },
+    shoot:function (dt) {
+        var offset = 27;
+        var a = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
+        a.x = this.x + offset;
+        a.y = this.y + 3 + this.height * 0.3;
+
+        var b = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
+        b.x = this.x - offset;
+        b.y = this.y + 3 + this.height * 0.3;
+    },
     setDirection: function( dir ) {
         this.direction = dir;
     },
