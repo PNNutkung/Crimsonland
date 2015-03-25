@@ -20,9 +20,6 @@ var Player = cc.Sprite.extend({
         b.x = this.x - offset;
         b.y = this.y + 3 + this.height * 0.3;
     },
-    setDirection: function( dir ) {
-        this.direction = dir;
-    },
     update: function( dt ) {
         if ((CL.KEYS[cc.KEY.w]) && this.y <= screenHeight) {
             this.y += dt * this.speed;
@@ -42,12 +39,14 @@ var Player = cc.Sprite.extend({
         else if(CL.KEYS[cc.KEY.right]){
             this._currentRotation+= 8;
         }
-
-        if(this._currentRotation < 0) this._currentRotation = 360;
-        if(this._currentRotation > 360) this._currentRotation = 0;
         
         this.setRotation(this._currentRotation);
         this.updatePosition();
+    },
+    handleTouchMove: function(event){
+        var angle = Math.atan2(parseInt(event.getLocationX())-300,parseInt(event.getLocationY())-300);
+        angle = angle * (180/Math.PI);
+        this._currentRotation = angle;
     },
     updatePosition: function() {
         this.setPosition( cc.p( this.x, this.y ) );
