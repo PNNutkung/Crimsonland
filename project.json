@@ -14,6 +14,8 @@
         "src/Resource.js",
         "src/Player.js",
         "src/GameLayer.js",
-        "src/config/GameConfig.js"
+        "src/config/GameConfig.js",
+        "src/Bullet.js",
+        "src/HitEffect.js"
     ]
 }

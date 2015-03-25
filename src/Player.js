@@ -1,6 +1,11 @@
 var Player = cc.Sprite.extend({
 	_currentRotation:0,
+    maxBulletPowerValue:4,
+    bulletTypeValue:1,
+    bulletPowerValue:1,
+    bulletSpeed:-900,
     speed:220,
+    bulletSpeed:900,
 	ctor: function( x, y ) {
         this._super();
         this.initWithFile( 'res/images/player.png' );
@@ -11,14 +16,11 @@ var Player = cc.Sprite.extend({
         this.direction = Player.DIR.STILL;
     },
     shoot:function (dt) {
-        var offset = 27;
-        var a = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", CL.ENEMY_ATTACK_MODE.NORMAL, 3000, CL.UNIT_TAG.PLAYER_BULLET);
-        a.x = this.x + offset;
+      //var offset = 27;
+        var a = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", CL.ENEMY_ATTACK_MODE.NORMAL, 3000, CL.UNIT_TAG.PLAYER_BULLET, this._currentRotation);
+        a.x = this.x;
         a.y = this.y + 3 + this.height * 0.3;
-
-        var b = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", CL.ENEMY_ATTACK_MODE.NORMAL, 3000, CL.UNIT_TAG.PLAYER_BULLET);
-        b.x = this.x - offset;
-        b.y = this.y + 3 + this.height * 0.3;
+        a.scheduleUpdate();
     },
     update: function( dt ) {
         if ((CL.KEYS[cc.KEY.w]) && this.y <= screenHeight) {
@@ -44,7 +46,7 @@ var Player = cc.Sprite.extend({
         this.updatePosition();
     },
     handleTouchMove: function(event){
-        var angle = Math.atan2(parseInt(event.getLocationX())-300,parseInt(event.getLocationY())-300);
+        var angle = Math.atan2(event.getLocationX()-this.getPositionX(),event.getLocationY()-this.getPositionY());
         angle = angle * (180/Math.PI);
         this._currentRotation = angle;
     },

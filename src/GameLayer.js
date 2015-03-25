@@ -1,13 +1,35 @@
+var g_sharedGameLayer;
+
 var GameLayer = cc.LayerColor.extend({
+    screenRect:null,
+    _texOpaqueBatch:null,
 	init: function(){
+        cc.spriteFrameCache.addSpriteFrames(res.textureOpaquePack_plist);
 		this.addKeyboardHandlers();
         this.addMouseHandlers();
 
+        var texOpaque = cc.textureCache.addImage(res.textureOpaquePack_png);
+        this._texOpaqueBatch = new cc.SpriteBatchNode(texOpaque);
+        this._sparkBatch = new cc.SpriteBatchNode(texOpaque);
+        if(cc.sys.isNative) this._sparkBatch.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+        this.addChild(this._texOpaqueBatch);
+        this.addChild(this._sparkBatch);
+
+        this.screenRect = cc.rect(0, 0, screenWidth, screenHeight + 10);
+
+        g_sharedGameLayer = this;
+
+        Bullet.preSet();
+        HitEffect.preSet();
+
+        CL.CONTAINER.PLAYER_BULLETS = [];
         this.player = new Player();
         this.player.setPosition( cc.p(400,300) );
         this.addChild( this.player );
-        this.direction = Player.DIR.UP;
+
+        this.scheduleUpdate();
         this.player.scheduleUpdate();
+
         return true;
     },
     addKeyboardHandlers: function() {
@@ -27,12 +49,14 @@ var GameLayer = cc.LayerColor.extend({
         cc.eventManager.addListener({
             event: cc.EventListener.MOUSE,
             onMouseMove : function( event ){
-                var str = "MousePosition X: " + parseInt(event.getLocationX()) + "  Y:" + parseInt(event.getLocationY());
                 self.player.handleTouchMove(event);
-            },  
+            },
             onMouseDown : function( event ){
                 var str = "Mouse Down detected, Key: " + event.getButton();
                 console.log(str);
+                if( event.getButton() == 0){
+                    self.player.shoot();
+                }
             } 
         }, this);
     }
@@ -47,3 +71,11 @@ var StartScene = cc.Scene.extend({
     }
 
 });
+
+GameLayer.prototype.addBullet = function (bullet) {
+    this._texOpaqueBatch.addChild(bullet);
+};
+
+GameLayer.prototype.addBulletHits = function (hit, zOrder) {
+    this._texOpaqueBatch.addChild(hit, zOrder);
+};

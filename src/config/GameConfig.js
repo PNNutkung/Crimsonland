@@ -85,7 +85,6 @@ CL.CONTAINER = {
 
 //bullet speed
 CL.BULLET_SPEED = {
-    ENEMY:-200,
     SHIP:900
 };
 // the counter of active enemies
