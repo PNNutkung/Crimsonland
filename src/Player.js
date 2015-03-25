@@ -12,11 +12,11 @@ var Player = cc.Sprite.extend({
     },
     shoot:function (dt) {
         var offset = 27;
-        var a = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
+        var a = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", CL.ENEMY_ATTACK_MODE.NORMAL, 3000, CL.UNIT_TAG.PLAYER_BULLET);
         a.x = this.x + offset;
         a.y = this.y + 3 + this.height * 0.3;
 
-        var b = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", MW.ENEMY_ATTACK_MODE.NORMAL, 3000, MW.UNIT_TAG.PLAYER_BULLET);
+        var b = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", CL.ENEMY_ATTACK_MODE.NORMAL, 3000, CL.UNIT_TAG.PLAYER_BULLET);
         b.x = this.x - offset;
         b.y = this.y + 3 + this.height * 0.3;
     },
@@ -52,6 +52,7 @@ var Player = cc.Sprite.extend({
     updatePosition: function() {
         this.setPosition( cc.p( this.x, this.y ) );
     }
+
 
 });
 
