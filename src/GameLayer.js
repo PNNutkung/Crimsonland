@@ -23,6 +23,7 @@ var GameLayer = cc.LayerColor.extend({
         HitEffect.preSet();
 
         CL.CONTAINER.PLAYER_BULLETS = [];
+        CL.CONTAINER.HITS = [];
         this.player = new Player();
         this.player.setPosition( cc.p(400,300) );
         this.addChild( this.player );
@@ -31,6 +32,28 @@ var GameLayer = cc.LayerColor.extend({
         this.player.scheduleUpdate();
 
         return true;
+    },
+    update:function (dt) {
+            //this.checkIsCollide();
+            this.removeInactiveUnit(dt);
+            //this.checkIsReborn();
+           // this.updateUI();
+            //this._movingBackground(dt);
+    },
+    removeInactiveUnit:function (dt) {
+        var i, selChild, children = this._texOpaqueBatch.children;
+        for (i in children) {
+            selChild = children[i];
+            if (selChild && selChild.active)
+                selChild.update(dt);
+        }
+
+        /*children = this._sparkBatch.children;
+        for (i in children) {
+            selChild = children[i];
+            if (selChild && selChild.active)
+                selChild.update(dt);
+        }*/
     },
     addKeyboardHandlers: function() {
         var self = this;

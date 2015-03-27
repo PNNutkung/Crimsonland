@@ -3,7 +3,6 @@ var Player = cc.Sprite.extend({
     maxBulletPowerValue:4,
     bulletTypeValue:1,
     bulletPowerValue:1,
-    bulletSpeed:-900,
     speed:220,
     bulletSpeed:900,
 	ctor: function( x, y ) {
@@ -13,14 +12,11 @@ var Player = cc.Sprite.extend({
         this.y = y;
         this.setTag = "player";
         this.setAnchorPoint(cc.p(0.5,0.5));
-        this.direction = Player.DIR.STILL;
     },
     shoot:function (dt) {
-      //var offset = 27;
-        var a = Bullet.getOrCreateBullet(this.bulletSpeed, "W1.png", CL.ENEMY_ATTACK_MODE.NORMAL, 3000, CL.UNIT_TAG.PLAYER_BULLET, this._currentRotation);
+        var a = Bullet.create(this.bulletSpeed, "W1.png", CL.ENEMY_ATTACK_MODE.NORMAL, 3000, CL.UNIT_TAG.PLAYER_BULLET, this._currentRotation);
         a.x = this.x;
-        a.y = this.y + 3 + this.height * 0.3;
-        a.scheduleUpdate();
+        a.y = this.y;
     },
     update: function( dt ) {
         if ((CL.KEYS[cc.KEY.w]) && this.y <= screenHeight) {
@@ -34,6 +30,9 @@ var Player = cc.Sprite.extend({
         }
         if ((CL.KEYS[cc.KEY.d]) && this.x <= screenWidth) {
             this.x += dt * this.speed;
+        }
+        if ( CL.KEYS[cc.KEY.space]) {
+            this.shoot();
         }
         if(CL.KEYS[cc.KEY.left]){
             this._currentRotation-= 8;
