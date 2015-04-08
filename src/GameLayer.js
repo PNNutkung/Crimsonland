@@ -31,7 +31,7 @@ var GameLayer = cc.LayerColor.extend({
         this.player.scheduleUpdate();
         this.enemy = new Enemy(this);
         this.addChild(this.enemy);
-
+        
         return true;
     },
     update:function (dt) {

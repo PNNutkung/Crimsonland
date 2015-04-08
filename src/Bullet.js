@@ -2,6 +2,8 @@ var Bullet = cc.Sprite.extend({
     active:true,
     xVelocity:0,
     yVelocity:0,
+    _currentPosX:0,
+    _currentPosY:0,
     power:1,
     HP:1,
     moveType:null,
@@ -10,9 +12,8 @@ var Bullet = cc.Sprite.extend({
     parentType:CL.BULLET_TYPE.PLAYER,
     _faceAngle:0,
     _shotAngle:0,
-    ctor:function (bulletSpeed, weaponType, attackMode, currentRotation,layer) {
+    ctor: function (bulletSpeed, weaponType, attackMode, currentRotation,layer) {
         this._super("#"+weaponType);
-        // this.setAncherPosition(new cc.setAncherPosition);
         this.setPosition(5000,5000);
         this.setAnchorPoint( new cc.Point( 0.5, 0.5 ) )
         this._faceAngle = currentRotation;
@@ -25,8 +26,7 @@ var Bullet = cc.Sprite.extend({
 
         this.attackMode = attackMode;
     },
-    update:function (dt) {
-        this.getRect();
+    update: function (dt) {
         var x = this.x, y = this.y;
         this.x = x - this.xVelocity * dt ;
 		this.y = y - this.yVelocity * dt ;
@@ -34,40 +34,33 @@ var Bullet = cc.Sprite.extend({
             this.destroy();
         }
         this.setRotation(this._faceAngle);
-        if(this.checkCollision(this.gameLayer.enemy.getRect())&&!this.gameLayer.enemy.IsHit){
+        if(this.closeTo(this.gameLayer.enemy.getEnemyPosX(),
+            this.gameLayer.enemy.getEnemyPosY(),
+            this.getBulletPosX(),
+            this.getBulletPosY())
+            &&!this.gameLayer.enemy.IsHit){
             this.gameLayer.enemy.IsHit = true;
             this.destroy();
         }
+        this._currentPosX = this.getPositionX();
+        this._currentPosY = this.getPositionY();
     },
-    destroy:function () {
+    getBulletPosX: function(){
+        return this._currentPosX;
+    },
+    getBulletPosY: function(){
+        return this._currentPosY;
+    },
+    closeTo: function(enemyPosX, enemyPosY, bulletPosX, bulletPosY){
+        return (Math.abs(enemyPosX - bulletPosX) < 12 && Math.abs(enemyPosY - bulletPosY) < 12 );
+    },
+    destroy: function () {
         var explode = HitEffect.getOrCreateHitEffect(this.x, this.y, Math.random() * 360, 0.75);
         this.active = false;
         this.visible = false;
     },
-    hurt:function () {
+    hurt: function () {
         this.HP--;
-    },
-
-
-    getRect:function(){
-    var spriteRect = this.getBoundingBoxToWorld();
-    return cc.rect( spriteRect.x,
-            spriteRect.y,
-            spriteRect.width,
-            spriteRect.height );
-    },
-
-    checkCollision:function(Rect){
-        console.log('minX: '+cc.rectGetMinX(Rect));
-        console.log('minY: '+cc.rectGetMinY(Rect));
-        console.log('maxX: '+cc.rectGetMaxX(Rect));
-        console.log('maxY: '+cc.rectGetMaxY(Rect));
-        return cc.rectOverlapsRect(this.getRect(),Rect);
-    },
-
-
-    collideRect:function (x, y) {
-        return cc.rect(x - 3, y - 3, 4, 4);
     }
 });
 

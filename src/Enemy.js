@@ -1,29 +1,25 @@
 var Enemy = cc.Sprite.extend({
+	_currentPosX:0,
+	_currentPosY:0,
 	ctor:function(layer){
 		this._super();
 		this.initWithFile('res/images/enemy.png');
-		this.setPosition(200,300);
+		this.setPosition(500,300);
 		this.layer = layer;
-		//this.IsHit = false;
 		this.scheduleUpdate();
 	},
-
 	update:function(){
 		if(this.IsHit){
 			console.log('hit');
 			this.removeFromParent();
 		}
-		console.log("x : "+this.getPositionX());
-		console.log('y : '+this.getPositionY());
-
+		this._currentPosX = this.getPositionX();
+		this._currentPosY = this.getPositionY();
 	},
-
-	getRect:function(){
-	var spriteRect = this.getBoundingBoxToWorld();
-	return cc.rect( spriteRect.x+16*Math.sin((45*Math.PI)/180),
-		spriteRect.y+16*Math.cos((45*Math.PI)/180),
-		(spriteRect.width/2)*Math.sqrt(2),
-		(spriteRect.width/2)*Math.sqrt(2));
+	getEnemyPosX: function(){
+		return this._currentPosX;
 	},
-
+	getEnemyPosY: function(){
+		return this._currentPosY;
+	}
 });
