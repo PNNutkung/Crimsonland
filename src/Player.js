@@ -4,7 +4,7 @@ var Player = cc.Sprite.extend({
     bulletTypeValue:1,
     bulletPowerValue:1,
     speed:220,
-    bulletSpeed:90,
+    bulletSpeed:900,
 	ctor: function( x, y ,layer) {
         this._super();
         this.initWithFile( 'res/images/player.png' );
@@ -15,7 +15,12 @@ var Player = cc.Sprite.extend({
         this.gameLayer = layer;
     },
     shoot:function (dt) {
-        var a = Bullet.create(this.bulletSpeed, "W1.png", CL.ENEMY_ATTACK_MODE.NORMAL, 3000, CL.UNIT_TAG.PLAYER_BULLET, this._currentRotation,this.gameLayer);
+        var a = Bullet.create(this.bulletSpeed, 
+                            "W1.png", 
+                            CL.ENEMY_ATTACK_MODE.NORMAL, 
+                            3000, 
+                            CL.UNIT_TAG.PLAYER_BULLET, 
+                            this._currentRotation,this.gameLayer);
         a.x = this.x;
         a.y = this.y;
     },
