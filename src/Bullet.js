@@ -10,17 +10,23 @@ var Bullet = cc.Sprite.extend({
     parentType:CL.BULLET_TYPE.PLAYER,
     _faceAngle:0,
     _shotAngle:0,
-    ctor:function (bulletSpeed, weaponType, attackMode, currentRotation) {
+    ctor:function (bulletSpeed, weaponType, attackMode, currentRotation,layer) {
         this._super("#"+weaponType);
+        // this.setAncherPosition(new cc.setAncherPosition);
+        this.setPosition(5000,5000);
+        this.setAnchorPoint( new cc.Point( 0.5, 0.5 ) )
         this._faceAngle = currentRotation;
         this._shotAngle = -(currentRotation * (Math.PI/180)) - (90 * (Math.PI/180));
-        
+
         this.xVelocity = bulletSpeed * Math.cos(this._shotAngle);
         this.yVelocity = bulletSpeed * Math.sin(this._shotAngle);
-       
+
+        this.gameLayer = layer;
+
         this.attackMode = attackMode;
     },
     update:function (dt) {
+        this.getRect();
         var x = this.x, y = this.y;
         this.x = x - this.xVelocity * dt ;
 		this.y = y - this.yVelocity * dt ;
@@ -28,6 +34,10 @@ var Bullet = cc.Sprite.extend({
             this.destroy();
         }
         this.setRotation(this._faceAngle);
+        if(this.checkCollision(this.gameLayer.enemy.getRect())&&!this.gameLayer.enemy.IsHit){
+            this.gameLayer.enemy.IsHit = true;
+            this.destroy();
+        }
     },
     destroy:function () {
         var explode = HitEffect.getOrCreateHitEffect(this.x, this.y, Math.random() * 360, 0.75);
@@ -37,8 +47,27 @@ var Bullet = cc.Sprite.extend({
     hurt:function () {
         this.HP--;
     },
+
+
+    getRect:function(){
+    var spriteRect = this.getBoundingBoxToWorld();
+    return cc.rect( spriteRect.x,
+            spriteRect.y,
+            spriteRect.width,
+            spriteRect.height );
+    },
+
+    checkCollision:function(Rect){
+        console.log('minX: '+cc.rectGetMinX(Rect));
+        console.log('minY: '+cc.rectGetMinY(Rect));
+        console.log('maxX: '+cc.rectGetMaxX(Rect));
+        console.log('maxY: '+cc.rectGetMaxY(Rect));
+        return cc.rectOverlapsRect(this.getRect(),Rect);
+    },
+
+
     collideRect:function (x, y) {
-        return cc.rect(x - 3, y - 3, 6, 6);
+        return cc.rect(x - 3, y - 3, 4, 4);
     }
 });
 
@@ -58,8 +87,8 @@ Bullet.getOrCreateBullet = function (bulletSpeed, weaponType, attackMode, zOrder
     return selChild;
 };
 
-Bullet.create = function (bulletSpeed, weaponType, attackMode, zOrder, mode, currentRotation) {
-    var bullet = new Bullet(bulletSpeed, weaponType, attackMode, currentRotation);
+Bullet.create = function (bulletSpeed, weaponType, attackMode, zOrder, mode, currentRotation,layer) {
+    var bullet = new Bullet(bulletSpeed, weaponType, attackMode, currentRotation,layer);
     g_sharedGameLayer.addBullet(bullet, zOrder, mode);
     CL.CONTAINER.PLAYER_BULLETS.push(bullet);
     return bullet;

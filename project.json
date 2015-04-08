@@ -16,6 +16,7 @@
         "src/GameLayer.js",
         "src/config/GameConfig.js",
         "src/Bullet.js",
-        "src/HitEffect.js"
+        "src/HitEffect.js",
+        "src/Enemy.js"
     ]
 }
