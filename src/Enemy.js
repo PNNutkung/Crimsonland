@@ -1,6 +1,7 @@
 var Enemy = cc.Sprite.extend({
 	_currentPosX:0,
 	_currentPosY:0,
+	HP:15,
 	ctor:function(layer){
 		this._super();
 		this.initWithFile('res/images/enemy.png');
@@ -9,12 +10,16 @@ var Enemy = cc.Sprite.extend({
 		this.scheduleUpdate();
 	},
 	update:function(){
-		if(this.IsHit){
+		if( this.HP <= 0 ){
 			console.log('hit');
 			this.removeFromParent();
+			this.IsHit = true;
 		}
 		this._currentPosX = this.getPositionX();
 		this._currentPosY = this.getPositionY();
+	},
+	hurt: function(){
+		this.HP--;
 	},
 	getEnemyPosX: function(){
 		return this._currentPosX;

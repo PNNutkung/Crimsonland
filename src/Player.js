@@ -51,7 +51,9 @@ var Player = cc.Sprite.extend({
         this.updatePosition();
     },
     handleTouchMove: function(event){
-        var angle = Math.atan2(event.getLocationX()-this.getPositionX(),event.getLocationY()-this.getPositionY());
+        var angle = Math.atan2(event.getLocationX() - 
+            this.getPositionX(),event.getLocationY() - 
+            this.getPositionY());
         angle = angle * (180/Math.PI);
         this._currentRotation = angle;
     },
