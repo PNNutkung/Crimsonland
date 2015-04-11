@@ -26,5 +26,56 @@ var Enemy = cc.Sprite.extend({
 	},
 	getEnemyPosY: function(){
 		return this._currentPosY;
+	},
+	checkPlayerQuadrant: function( player, distanceX, distanceY ) {
+
+		if( distanceX >= 0 ) {
+			if( distanceY >= 0 ) {
+				return enemy.FOLLOWBYQUADRANTS.FIRSTQUADRADNT;
+			} else return enemy.FOLLOWBYQUADRANTS.FOURTHQUADRANT;
+		} else {
+			if( distanceY >= 0 ) {
+				return enemy.FOLLOWBYQUADRANTS.SECONDQUADRANT;
+			} else return enemy.FOLLOWBYQUADRANTS.THIRDQUADRANT;
+		}
+
+	},
+
+	getDistanceXFromPlayer: function( player ) {
+		var playerPositionX = this.player.getPositionX();
+		var distanceX = this.getPositionX() - playerPositionX;
+		return distanceX;
+	},
+
+	getDistanceYFromPlayer: function( player ) {
+		var playerPositionY = this.player.getPositionY();
+		var distanceY = this.getPositionY() - playerPositionY;
+		return distanceY;
+	},
+
+	followPlayer: function() {
+		if( this.spottedPlayer ) {
+			if( this.timeUntilMove > 0.5 ) {
+				var distanceX = this.getDistanceXFromPlayer();
+				var distanceY = this.getDistanceYFromPlayer();
+				var quadrant = this.checkPlayerQuadrant( this.player, distanceX, distanceY );
+				var degree = Math.atan( distanceX / distanceY );
+
+				if( quadrant == enemy.FOLLOWBYQUADRANTS.THIRDQUADRANT || quadrant == enemy.FOLLOWBYQUADRANTS.FOURTHQUADRANT ) degree += Math.PI;
+				this.moveAfterPlayer( degree );
+				this.timeUntilMove = 0;
+			}
+		}
+	},
+
+	moveAfterPlayer: function( degree ) {
+		this.x -= enemy.SPEED * Math.sin( degree );
+		this.y -= enemy.SPEED * Math.cos( degree );
 	}
 });
+enemy.FOLLOWBYQUADRANTS = {
+	FIRSTQUADRADNT:1,
+	SECONDQUADRANT:2,
+	THIRDQUADRANT:3,
+	FOURTHQUADRANT:4
+}
