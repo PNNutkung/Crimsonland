@@ -51,7 +51,7 @@ var Bullet = cc.Sprite.extend({
   },
   toDestroy: function( xPos, yPos ) {
     if (xPos < 0 || xPos > g_sharedGameLayer.screenRect.width ||
-      yPos < 0 || yPos > g_sharedGameLayer.screenRect.height ||
+        yPos < 0 || yPos > g_sharedGameLayer.screenRect.height ||
       this.HP <= 0) {
         this.destroy();
       }

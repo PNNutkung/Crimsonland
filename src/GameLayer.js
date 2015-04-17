@@ -26,12 +26,12 @@ var GameLayer = cc.LayerColor.extend({
     CL.CONTAINER.HITS = [];
     this.player = new Player(400,300,this);
     this.addChild( this.player );
-
-    this.scheduleUpdate();
     this.player.scheduleUpdate();
     this.enemy = new Enemy(this);
     this.addChild(this.enemy);
-
+    this.enemy.scheduleUpdate();
+    this.enemy.setKnownPlayer(this.player);
+    this.scheduleUpdate();
     return true;
   },
   update:function (dt) {

@@ -1,0 +1,135 @@
+[33mcommit 271942994a6155add70bf378c4caf23a997867f3[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Fri Apr 10 10:10:58 2015 +0700
+
+    enemy has HP
+
+ 3 files changed, 16 insertions(+), 7 deletions(-)
+
+[33mcommit f0dc767706baae0f267e27339b15a150633b8cc7[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Wed Apr 8 19:43:38 2015 +0700
+
+    Collision OK
+
+ 3 files changed, 33 insertions(+), 44 deletions(-)
+
+[33mcommit be1bdf8a2dbfd6b21325534f80feda8605cab1e9[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Wed Apr 8 16:47:37 2015 +0700
+
+    Edit indent
+
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+[33mcommit bffbed6422a5657cf01079974c9c53effa2c82dc[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Wed Apr 8 16:18:33 2015 +0700
+
+    Show iteration 2
+
+ 14 files changed, 589 insertions(+), 24 deletions(-)
+
+[33mcommit 0a42bc1742d5544831621f751a1d083c71bd7bf0[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Fri Mar 27 11:28:07 2015 +0700
+
+    Player can fire every angle
+
+ 3 files changed, 40 insertions(+), 58 deletions(-)
+
+[33mcommit d7424910fe022823f7ca684eec1358027a426039[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Thu Mar 26 02:09:18 2015 +0700
+
+    Player can fire 18.30PM - 02.09AM
+
+ 10 files changed, 323 insertions(+), 83 deletions(-)
+
+[33mcommit 068e428f3c8013d9cf4abc8fb0361714576e1c58[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Wed Mar 25 19:01:01 2015 +0700
+
+    add mouse listener
+
+ 2 files changed, 27 insertions(+), 13 deletions(-)
+
+[33mcommit 214d8cfcf595a9d26452a9269ac7c2a4b5db682a[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Wed Mar 25 23:12:19 2015 +0700
+
+    change type
+
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+[33mcommit aa08c2d2568965cd148f530268173b1cffdf9c4d[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Tue Mar 24 15:13:33 2015 +0700
+
+    Add Bullets ~15.13
+
+ 2 files changed, 77 insertions(+)
+
+[33mcommit 30b9acab5637a562d8b6ef26b9c5a45bb3640a26[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Tue Mar 24 14:24:40 2015 +0700
+
+    Delete some useless code 13.00-14.24
+
+ 3 files changed, 10 insertions(+), 76 deletions(-)
+
+[33mcommit f9f6152d99f7e7ccca0872541cdd968970347378[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Tue Mar 24 08:16:44 2015 +0700
+
+    Player walk smoothly 7.30 - 8.16
+
+ 6 files changed, 262 insertions(+), 133 deletions(-)
+
+[33mcommit 9a5fb26b55d2bd5ef4c74dee857a394adf5c2b03[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Mon Mar 23 23:07:28 2015 +0700
+
+    improve rotation
+
+ 3 files changed, 20 insertions(+), 10 deletions(-)
+
+[33mcommit dc53e6d6c4565b9eee6c2eb90f67d5466f6fb89c[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Sun Mar 22 16:32:46 2015 +0700
+
+    Player can rotate 14.00 - 16.32
+
+ 4 files changed, 17 insertions(+), 4 deletions(-)
+
+[33mcommit c022f32f14013d717ea85ec65e6f6ee859b5a501[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Sun Mar 22 15:17:34 2015 +0700
+
+    player can move
+
+ 2 files changed, 62 insertions(+), 1 deletion(-)
+
+[33mcommit 92b78390418a1cfcad004ffa39aaa807411bfb98[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Sun Mar 22 14:42:26 2015 +0700
+
+    Add Plyer to game
+
+ 11 files changed, 48 insertions(+), 84 deletions(-)
+
+[33mcommit 447fd28d17c36179fe9bdde9a39a9274ca717769[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Sun Mar 22 12:10:46 2015 +0700
+
+    Start develop after lunch now: have luch
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+[33mcommit 1fdb029bd40b149b60c1c1ad902133d0b6e32d55[m
+Author: Pipatpol <pipatpol.t@ku.th>
+Date:   Wed Feb 25 16:16:09 2015 +0700
+
+    Initialize file checkin
+
+ 308 files changed, 142387 insertions(+)
