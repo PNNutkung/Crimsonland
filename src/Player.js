@@ -5,6 +5,7 @@ var Player = cc.Sprite.extend({
 	bulletPowerValue:1,
 	speed:220,
 	bulletSpeed:900,
+    HP:100,
 	ctor: function( x, y ,layer) {
 		this._super();
 		this.initWithFile( 'res/images/player.png' );
@@ -47,6 +48,11 @@ var Player = cc.Sprite.extend({
 				this._currentRotation+= 8;
 			}
 
+            if( this.HP <= 0 ){
+                console.log('hit');
+                this.removeFromParent();
+                this.IsHit = true;
+            }
 			this.setRotation(this._currentRotation);
 			this.updatePosition();
 	},
@@ -65,7 +71,11 @@ var Player = cc.Sprite.extend({
 	},
 	playerPosY: function() {
 		return this.y;
-	}
+	},
+    hurt: function(){
+        console.log('HP:'+ this.HP)
+        this.HP--;
+    }
 
 
 	});

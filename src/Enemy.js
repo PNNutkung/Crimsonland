@@ -22,6 +22,7 @@ var Enemy = cc.Sprite.extend({
 		}
 		this._currentPosX = this.getPositionX();
 		this._currentPosY = this.getPositionY();
+		this.collidsionCheck();
         this.spotPlayer();
 		this.followPlayer();
 	},
@@ -67,10 +68,10 @@ var Enemy = cc.Sprite.extend({
             var quadrant = this.checkPlayerQuadrant( this.player, distanceX, distanceY );
             var degree = Math.atan( distanceX / distanceY );
               
-            if( quadrant == Enemy.FOLLOWBYQUADRANTS.THIRDQUADRANT || quadrant == Enemy.FOLLOWBYQUADRANTS.FOURTHQUADRANT ) degree += Math.PI;
+            if( quadrant == Enemy.FOLLOWBYQUADRANTS.THIRDQUADRANT || 
+                quadrant == Enemy.FOLLOWBYQUADRANTS.FOURTHQUADRANT ) degree += Math.PI;
             this.moveAfterPlayer( degree );
             this.timeUntilMove = 0;
-           
         }
     },
     
@@ -108,10 +109,22 @@ var Enemy = cc.Sprite.extend({
     
     setKnownPlayer: function( player ) {
         this.player = player;
+    },
+	closeTo: function(enemyPosX, enemyPosY, bulletPosX, bulletPosY){
+    	return (Math.abs(enemyPosX - bulletPosX) < 12 && Math.abs(enemyPosY - bulletPosY) < 12 );
+  	},
+  	collidsionCheck: function() {
+  		if(this.closeTo(this.player.getPositionX(),
+  			this.player.getPositionY(),
+  			this.getPositionX(),
+  			this.getPositionY()) &&
+  			!this.player.IsHit) {
+  			this.player.hurt();
     }
+  }
 });
 
-Enemy.SPEED = 2;
+Enemy.SPEED = 3;
 Enemy.SIGHTLENGTH = 250;
 Enemy.MOVEAFTERTWOSECONDS = 2; 
 Enemy.FOLLOWBYQUADRANTS = {
