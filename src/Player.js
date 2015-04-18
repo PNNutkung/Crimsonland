@@ -49,7 +49,7 @@ var Player = cc.Sprite.extend({
 			}
 
             if( this.HP <= 0 ){
-                console.log('hit');
+                console.log('die');
                 this.removeFromParent();
                 this.IsHit = true;
             }
@@ -75,6 +75,9 @@ var Player = cc.Sprite.extend({
     hurt: function(){
         console.log('HP:'+ this.HP)
         this.HP--;
+    },
+    getHitPoints: function() {
+        return this.HP;
     }
 
 

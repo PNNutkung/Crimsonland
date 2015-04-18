@@ -31,10 +31,17 @@ var GameLayer = cc.LayerColor.extend({
     this.addChild(this.enemy);
     this.enemy.scheduleUpdate();
     this.enemy.setKnownPlayer(this.player);
+
+    this.lifeLabel = new lifeLabel(); 
+    this.lifeLabel.setKnownPlayer(this.player);
+    this.addChild( this.lifeLabel );
+
+
     this.scheduleUpdate();
     return true;
   },
   update:function (dt) {
+    this.lifeLabel.getHit();
     this.removeInactiveUnit(dt);
   },
   removeInactiveUnit:function (dt) {

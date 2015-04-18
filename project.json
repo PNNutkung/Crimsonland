@@ -17,6 +17,7 @@
         "src/config/GameConfig.js",
         "src/Bullet.js",
         "src/HitEffect.js",
-        "src/Enemy.js"
+        "src/Enemy.js",
+        "src/lifeLabel.js"
     ]
 }
