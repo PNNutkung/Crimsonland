@@ -28,7 +28,7 @@ var Enemy = cc.Sprite.extend({
 	},
 
 	hurt: function(){
-		this.HP--;
+		this.HP-=5;
 	},
 
 	getEnemyPosX: function(){

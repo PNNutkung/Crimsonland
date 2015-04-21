@@ -30,15 +30,11 @@ var GameLayer = cc.LayerColor.extend({
     this.player = new Player(400,300,this);
     this.addChild( this.player );
     this.player.scheduleUpdate();
-   
-    this.spawnEnemy();
-    this.spawnEnemy();
-    this.spawnEnemy();
-    this.spawnEnemy();
 
     this.lifeLabel = new lifeLabel(); 
     this.lifeLabel.setKnownPlayer(this.player);
     this.addChild( this.lifeLabel );
+    this.count = 0;
 
     this.scheduleUpdate();
     return true;
@@ -46,7 +42,12 @@ var GameLayer = cc.LayerColor.extend({
 
   update:function (dt) {
     this.lifeLabel.getHit();
+    this.count += dt;
     this.removeInactiveUnit(dt);
+    if(this.count>0.8){
+      this.spawnEnemy();
+      this.count = 0;
+    }
   },
 
   spawnEnemy: function(){
@@ -83,15 +84,18 @@ var GameLayer = cc.LayerColor.extend({
     var self = this;
     cc.eventManager.addListener({
       event: cc.EventListener.MOUSE,
-      onMouseMove : function( event ){
+      onMouseMove : function( event ) {
         self.player.handleTouchMove(event);
       },
-      onMouseDown : function( event ){
+      onMouseDown : function( event ) {
         var str = "Mouse Down detected, Key: " + event.getButton();
         console.log(str);
         if( event.getButton() == 0){
           self.player.shoot();
         }
+      },
+      onMouseUp : function( event ) {
+
       }
     }, this);
   }
