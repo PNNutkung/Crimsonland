@@ -43,13 +43,16 @@ var Bullet = cc.Sprite.extend({
   },
 
   collidsionCheck: function() {
-    if(this.closeTo(this.gameLayer.enemy.getEnemyPosX(),
-    this.gameLayer.enemy.getEnemyPosY(),
-    this.getBulletPosX(),
-    this.getBulletPosY()) &&
-    !this.gameLayer.enemy.IsHit) {
-      this.gameLayer.enemy.hurt();
-      this.destroy();
+    for (var j = 0; j < CL.CONTAINER.ENEMIES.length; j++) {
+      selEnemy = CL.CONTAINER.ENEMIES[j];
+      if(this.closeTo(selEnemy.getEnemyPosX(),
+        selEnemy.getEnemyPosY(),
+        this.getBulletPosX(),
+        this.getBulletPosY()) &&
+        !selEnemy.IsHit) {
+        selEnemy.hurt();
+        this.destroy();
+      }
     }
   },
 

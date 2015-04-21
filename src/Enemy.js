@@ -3,11 +3,10 @@ var Enemy = cc.Sprite.extend({
 	_currentPosY:0,
 	HP:15,
 	timeUntilMove:2,
-	ctor:function(layer){
+	ctor:function(){
 		this._super();
 		this.initWithFile('res/images/enemy.png');
-		this.setPosition(500,300);
-		this.layer = layer;
+		this.setPosition(Math.floor(Math.random()*800 +1),Math.floor(Math.random()*600 +1));
 		this.player = null;
 		this.lineOfSight = null;
         this.spottedPlayer = false;
@@ -39,7 +38,7 @@ var Enemy = cc.Sprite.extend({
 	getEnemyPosY: function(){
 		return this._currentPosY;
 	},
-    
+
 	checkPlayerQuadrant: function( player, distanceX, distanceY ) {
                 
         if( distanceX >= 0 ) {

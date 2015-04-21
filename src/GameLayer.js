@@ -25,15 +25,16 @@ var GameLayer = cc.LayerColor.extend({
 
     CL.CONTAINER.PLAYER_BULLETS = [];
     CL.CONTAINER.HITS = [];
+    CL.CONTAINER.ENEMIES = [];
    
     this.player = new Player(400,300,this);
     this.addChild( this.player );
     this.player.scheduleUpdate();
    
-    this.enemy = new Enemy(this);
-    this.addChild(this.enemy);
-    this.enemy.scheduleUpdate();
-    this.enemy.setKnownPlayer(this.player);
+    this.spawnEnemy();
+    this.spawnEnemy();
+    this.spawnEnemy();
+    this.spawnEnemy();
 
     this.lifeLabel = new lifeLabel(); 
     this.lifeLabel.setKnownPlayer(this.player);
@@ -46,6 +47,14 @@ var GameLayer = cc.LayerColor.extend({
   update:function (dt) {
     this.lifeLabel.getHit();
     this.removeInactiveUnit(dt);
+  },
+
+  spawnEnemy: function(){
+    this.enemy = new Enemy();
+    this.addChild(this.enemy);
+    this.enemy.scheduleUpdate();
+    this.enemy.setKnownPlayer(this.player);
+    CL.CONTAINER.ENEMIES.push(this.enemy);
   },
 
   removeInactiveUnit:function (dt) {
