@@ -15,6 +15,7 @@ var Player = cc.Sprite.extend({
 		this.setAnchorPoint(cc.p(0.5,0.5));
 		this.gameLayer = layer;
 	},
+
 	shoot:function (dt) {
 		var a = Bullet.create(this.bulletSpeed,
 			"W1.png",
@@ -24,7 +25,8 @@ var Player = cc.Sprite.extend({
 			this._currentRotation,this.gameLayer);
 			a.x = this.x;
 			a.y = this.y;
-		},
+	},
+
 	update: function( dt ) {
 			if ((CL.KEYS[cc.KEY.w]) && this.y <= screenHeight) {
 				this.y += dt * this.speed;
@@ -56,6 +58,7 @@ var Player = cc.Sprite.extend({
 			this.setRotation(this._currentRotation);
 			this.updatePosition();
 	},
+
 	handleTouchMove: function(event){
 		var angle = Math.atan2(event.getLocationX() -
 	this.getPositionX(),event.getLocationY() -
@@ -63,19 +66,24 @@ var Player = cc.Sprite.extend({
 		angle = angle * (180/Math.PI);
 		this._currentRotation = angle;
 	},
+
 	updatePosition: function() {
 		this.setPosition( cc.p( this.x, this.y ) );
 	},
+
 	playerPosX: function() {
 		return this.x;
 	},
+
 	playerPosY: function() {
 		return this.y;
 	},
+
     hurt: function(){
         console.log('HP:'+ this.HP)
         this.HP--;
     },
+    
     getHitPoints: function() {
         return this.HP;
     }

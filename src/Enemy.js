@@ -14,6 +14,7 @@ var Enemy = cc.Sprite.extend({
         this.speed = Enemy.SPEED;
 		this.scheduleUpdate();
 	},
+
 	update:function() {
 		if( this.HP <= 0 ){
 			console.log('hit');
@@ -26,15 +27,19 @@ var Enemy = cc.Sprite.extend({
         this.spotPlayer();
 		this.followPlayer();
 	},
+
 	hurt: function(){
 		this.HP--;
 	},
+
 	getEnemyPosX: function(){
 		return this._currentPosX;
 	},
+
 	getEnemyPosY: function(){
 		return this._currentPosY;
 	},
+    
 	checkPlayerQuadrant: function( player, distanceX, distanceY ) {
                 
         if( distanceX >= 0 ) {
@@ -110,9 +115,11 @@ var Enemy = cc.Sprite.extend({
     setKnownPlayer: function( player ) {
         this.player = player;
     },
+
 	closeTo: function(enemyPosX, enemyPosY, bulletPosX, bulletPosY){
     	return (Math.abs(enemyPosX - bulletPosX) < 12 && Math.abs(enemyPosY - bulletPosY) < 12 );
   	},
+
   	collidsionCheck: function() {
   		if(this.closeTo(this.player.getPositionX(),
   			this.player.getPositionY(),

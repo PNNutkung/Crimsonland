@@ -26,6 +26,7 @@ var Bullet = cc.Sprite.extend({
 
     this.attackMode = attackMode;
   },
+
   update: function ( changedTime ) {
     var x = this.x, y = this.y;
     this.x = x - this.xVelocity * changedTime ;
@@ -35,10 +36,12 @@ var Bullet = cc.Sprite.extend({
     this.setRotation(this._faceAngle);
     this.updatePosition();
   },
+
   updatePosition: function(){
     this._currentPosX = this.getPositionX();
     this._currentPosY = this.getPositionY();
   },
+
   collidsionCheck: function() {
     if(this.closeTo(this.gameLayer.enemy.getEnemyPosX(),
     this.gameLayer.enemy.getEnemyPosY(),
@@ -49,6 +52,7 @@ var Bullet = cc.Sprite.extend({
       this.destroy();
     }
   },
+
   toDestroy: function( xPos, yPos ) {
     if (xPos < 0 || xPos > g_sharedGameLayer.screenRect.width ||
         yPos < 0 || yPos > g_sharedGameLayer.screenRect.height ||
@@ -56,20 +60,25 @@ var Bullet = cc.Sprite.extend({
         this.destroy();
       }
   },
+
   getBulletPosX: function(){
     return this._currentPosX;
   },
+
   getBulletPosY: function(){
     return this._currentPosY;
   },
+
   closeTo: function(enemyPosX, enemyPosY, bulletPosX, bulletPosY){
     return (Math.abs(enemyPosX - bulletPosX) < 12 && Math.abs(enemyPosY - bulletPosY) < 12 );
   },
+
   destroy: function () {
     var explode = HitEffect.getOrCreateHitEffect(this.x, this.y, Math.random() * 360, 0.75);
     this.active = false;
     this.visible = false;
   },
+  
   hurt: function () {
       this.HP--;
     }

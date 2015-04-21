@@ -6,9 +6,11 @@ var lifeLabel = cc.LabelTTF.extend({
         this.player = null;
         this.addChild( this.lifeLabel );
     },
+
     getHit: function() {
         this.lifeLabel.setString( 'HP: '+this.player.getHitPoints() );
     },
+    
     setKnownPlayer: function( player ) {
         this.player = player;
     }

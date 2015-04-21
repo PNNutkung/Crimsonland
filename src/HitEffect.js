@@ -4,6 +4,7 @@ var HitEffect = cc.Sprite.extend({
 		this._super("#hit.png");
 		this.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
 	},
+	
 	reset:function (x, y, rotation, scale) {
 		this.attr({
 			x: x,
@@ -14,6 +15,7 @@ var HitEffect = cc.Sprite.extend({
 		this.runAction(cc.scaleBy(0.3, 2, 2));
 		this.runAction(cc.sequence(cc.fadeOut(0.3), cc.callFunc(this.destroy, this)));
 	},
+
 	destroy:function () {
 		this.visible = false;
 		this.active = false;

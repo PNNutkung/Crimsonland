@@ -11,6 +11,7 @@ var GameLayer = cc.LayerColor.extend({
     var texOpaque = cc.textureCache.addImage(res.textureOpaquePack_png);
     this._texOpaqueBatch = new cc.SpriteBatchNode(texOpaque);
     this._sparkBatch = new cc.SpriteBatchNode(texOpaque);
+   
     if(cc.sys.isNative) this._sparkBatch.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
     this.addChild(this._texOpaqueBatch);
     this.addChild(this._sparkBatch);
@@ -24,9 +25,11 @@ var GameLayer = cc.LayerColor.extend({
 
     CL.CONTAINER.PLAYER_BULLETS = [];
     CL.CONTAINER.HITS = [];
+   
     this.player = new Player(400,300,this);
     this.addChild( this.player );
     this.player.scheduleUpdate();
+   
     this.enemy = new Enemy(this);
     this.addChild(this.enemy);
     this.enemy.scheduleUpdate();
@@ -36,14 +39,15 @@ var GameLayer = cc.LayerColor.extend({
     this.lifeLabel.setKnownPlayer(this.player);
     this.addChild( this.lifeLabel );
 
-
     this.scheduleUpdate();
     return true;
   },
+
   update:function (dt) {
     this.lifeLabel.getHit();
     this.removeInactiveUnit(dt);
   },
+
   removeInactiveUnit:function (dt) {
     var i, selChild, children = this._texOpaqueBatch.children;
     for (i in children) {
@@ -52,6 +56,7 @@ var GameLayer = cc.LayerColor.extend({
       selChild.update(dt);
     }
   },
+
   addKeyboardHandlers: function() {
     var self = this;
     cc.eventManager.addListener({
@@ -64,6 +69,7 @@ var GameLayer = cc.LayerColor.extend({
       }
     }, this);
   },
+  
   addMouseHandlers: function() {
     var self = this;
     cc.eventManager.addListener({
