@@ -3,10 +3,11 @@ var Enemy = cc.Sprite.extend({
     _currentPosX: 0,
     _currentPosY: 0,
     HP: 15,
-    timeUntilMove: 2,
     ctor: function(x, y) {
         this._super();
-        this.initWithFile('res/images/enemy.png');
+        var sprites = ['res/images/enemy.png','res/images/enemy2.png','res/images/enemy3.png','res/images/enemy4.png'];
+        var randomNum = Math.floor(Math.random()*4) ;
+        this.initWithFile(sprites[randomNum]);
         this.setPosition(x, y);
         this.player = null;
         this.spottedPlayer = false;
