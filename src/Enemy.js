@@ -114,9 +114,9 @@ var Enemy = cc.Sprite.extend({
 
     collidsionCheck: function() {
         if (this.closeTo(this.player.getPositionX(),
-                this.player.getPositionY(),
-                this.getPositionX(),
-                this.getPositionY()) &&
+            this.player.getPositionY(),
+            this.getPositionX(),
+            this.getPositionY()) &&
             !this.player.IsHit) {
             this.player.hurt();
         }
