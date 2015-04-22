@@ -18,12 +18,9 @@ var Bullet = cc.Sprite.extend({
         this.setAnchorPoint(new cc.Point(0.5, 0.5))
         this._faceAngle = currentRotation;
         this._shotAngle = -(currentRotation * (Math.PI / 180)) - (90 * (Math.PI / 180));
-
         this.xVelocity = bulletSpeed * Math.cos(this._shotAngle);
         this.yVelocity = bulletSpeed * Math.sin(this._shotAngle);
-
         this.gameLayer = layer;
-
         this.attackMode = attackMode;
     },
 

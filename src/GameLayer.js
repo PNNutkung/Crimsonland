@@ -5,6 +5,7 @@ var GameLayer = cc.LayerColor.extend({
     _texOpaqueBatch: null,
     init: function() {
         this.addAllFunction();
+        this.addBackground();
         this.addSparks();
         this.createArrays();
         this.defineTheScreenRect();
@@ -29,7 +30,12 @@ var GameLayer = cc.LayerColor.extend({
             this.count = 0;
         }
     },
-    
+
+    addBackground : function() {
+        this.backGround = new Background();
+        this.addChild(this.backGround);
+    },
+
     endGame: function() {
         for (var j = 0; j < CL.CONTAINER.ENEMIES.length; j++) {
             selEnemy = CL.CONTAINER.ENEMIES[j];

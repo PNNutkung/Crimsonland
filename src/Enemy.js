@@ -1,4 +1,5 @@
 var Enemy = cc.Sprite.extend({
+    _currentRotation: 0,
     _currentPosX: 0,
     _currentPosY: 0,
     HP: 15,
@@ -22,12 +23,22 @@ var Enemy = cc.Sprite.extend({
         this._currentPosX = this.getPositionX();
         this._currentPosY = this.getPositionY();
         this.collidsionCheck();
+        this.faceToPlayer();
         this.spotPlayer();
         this.followPlayer();
+        this.setRotation(this._currentRotation);
+    },
+
+    faceToPlayer: function() {
+        var angle = Math.atan2(g_sharedGameLayer.player.playerPosX() -
+            this.getPositionX(), g_sharedGameLayer.player.playerPosY() -
+            this.getPositionY());
+        angle = angle * (180 / Math.PI);
+        this._currentRotation = angle;
     },
 
     hurt: function() {
-        this.HP -= 3;
+        this.HP -= 5;
     },
 
     getEnemyPosX: function() {

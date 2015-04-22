@@ -19,6 +19,7 @@
         "src/HitEffect.js",
         "src/Enemy.js",
         "src/lifeLabel.js",
-        "src/scoreLabel.js"
+        "src/scoreLabel.js",
+        "src/Background.js"
     ]
 }
