@@ -102,9 +102,9 @@ var Enemy = cc.Sprite.extend({
 
     checkPlayerWithinHitRange: function() {
         return cc.rectOverlapsRect(this.hitRange, this.player.getPlayerRect());
-    }
+    },
 
-        setKnownPlayer: function(player) {
+    setKnownPlayer: function(player) {
         this.player = player;
     },
 
