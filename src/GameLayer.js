@@ -44,18 +44,22 @@ var GameLayer = cc.LayerColor.extend({
     this.lifeLabel.getHit();
     this.count += dt;
     this.removeInactiveUnit(dt);
-    if(this.count>0.8){
+    if(this.count > 0.4){
       this.spawnEnemy();
       this.count = 0;
     }
   },
 
   spawnEnemy: function(){
-    this.enemy = new Enemy();
-    this.addChild(this.enemy);
-    this.enemy.scheduleUpdate();
-    this.enemy.setKnownPlayer(this.player);
-    CL.CONTAINER.ENEMIES.push(this.enemy);
+    var xPos = Math.floor(Math.random()*800 +1);
+    var yPos = Math.floor(Math.random()*600 +1);
+    if( Math.abs(xPos - this.player.playerPosX()) >= 50 && Math.abs(yPos - this.player.playerPosY()) >= 50 ) {
+      this.enemy = new Enemy( xPos, yPos );
+      this.addChild(this.enemy);
+      this.enemy.scheduleUpdate();
+      this.enemy.setKnownPlayer(this.player);
+      CL.CONTAINER.ENEMIES.push(this.enemy);
+    }
   },
 
   removeInactiveUnit:function (dt) {

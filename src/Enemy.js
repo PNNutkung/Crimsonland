@@ -3,12 +3,11 @@ var Enemy = cc.Sprite.extend({
 	_currentPosY:0,
 	HP:15,
 	timeUntilMove:2,
-	ctor:function(){
+	ctor:function( x, y ){
 		this._super();
 		this.initWithFile('res/images/enemy.png');
-		this.setPosition(Math.floor(Math.random()*800 +1),Math.floor(Math.random()*600 +1));
+		this.setPosition( x,y );
 		this.player = null;
-		this.lineOfSight = null;
         this.spottedPlayer = false;
         this.speed = Enemy.SPEED;
 		this.scheduleUpdate();
@@ -28,7 +27,7 @@ var Enemy = cc.Sprite.extend({
 	},
 
 	hurt: function(){
-		this.HP-=5;
+		this.HP-=3;
 	},
 
 	getEnemyPosX: function(){
@@ -103,13 +102,7 @@ var Enemy = cc.Sprite.extend({
     
     checkPlayerWithinHitRange: function() {
         return cc.rectOverlapsRect( this.hitRange, this.player.getPlayerRect() );
-    },
-    
-    getEnemyLineofSight: function() {
-        var bottomLeftPointX = this.getPositionX() - 150;
-        var bottomLeftPointY = this.getPositionY() - 150;
-        return cc.rect( bottomLeftPointX, bottomLeftPointY, Enemy.SIGHTLENGTH,Enemy.SIGHTLENGTH );
-    },
+    }
     
     setKnownPlayer: function( player ) {
         this.player = player;
@@ -130,8 +123,7 @@ var Enemy = cc.Sprite.extend({
   }
 });
 
-Enemy.SPEED = 3;
-Enemy.SIGHTLENGTH = 250;
+Enemy.SPEED = 3.25;
 Enemy.MOVEAFTERTWOSECONDS = 2; 
 Enemy.FOLLOWBYQUADRANTS = {
     FIRSTQUADRADNT: 1,
