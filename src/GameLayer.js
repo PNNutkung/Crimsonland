@@ -4,40 +4,23 @@ var GameLayer = cc.LayerColor.extend({
     screenRect: null,
     _texOpaqueBatch: null,
     init: function() {
-        cc.spriteFrameCache.addSpriteFrames(res.textureOpaquePack_plist);
-        this.addKeyboardHandlers();
-        this.addMouseHandlers();
-
-        var texOpaque = cc.textureCache.addImage(res.textureOpaquePack_png);
-        this._texOpaqueBatch = new cc.SpriteBatchNode(texOpaque);
-        this._sparkBatch = new cc.SpriteBatchNode(texOpaque);
-
-        if (cc.sys.isNative) this._sparkBatch.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
-        this.addChild(this._texOpaqueBatch);
-        this.addChild(this._sparkBatch);
-
-        this.screenRect = cc.rect(0, 0, screenWidth, screenHeight + 10);
-
+        this.addAllFunction();
+        this.addSparks();
+        this.createArrays();
+        this.defineTheScreenRect();
         g_sharedGameLayer = this;
-
-        Bullet.preSet();
-        HitEffect.preSet();
-
-        CL.CONTAINER.PLAYER_BULLETS = [];
-        CL.CONTAINER.HITS = [];
-        CL.CONTAINER.ENEMIES = [];
-
+        this.preSets();
         this.addPlayer();
-        this.player.scheduleUpdate();
-
         this.addLifeLabel();
         this.addScoreLabel();
-
         this.scheduleUpdate();
         return true;
     },
 
     update: function(dt) {
+        if( !this.player.isLive() ){
+            this.endGame();
+        }
         this.lifeLabel.getHit();
         this.count += dt;
         this.removeInactiveUnit(dt);
@@ -46,18 +29,56 @@ var GameLayer = cc.LayerColor.extend({
             this.count = 0;
         }
     },
+    
+    endGame: function() {
+        for (var j = 0; j < CL.CONTAINER.ENEMIES.length; j++) {
+            selEnemy = CL.CONTAINER.ENEMIES[j];
+            selEnemy.unscheduleUpdate();
+        }
+        this.unscheduleUpdate();
+    },
+
+    defineTheScreenRect: function() {
+        this.screenRect = cc.rect(0, 0, screenWidth, screenHeight + 10);
+    },
+
+    createArrays: function() {
+        CL.CONTAINER.PLAYER_BULLETS = [];
+        CL.CONTAINER.HITS = [];
+        CL.CONTAINER.ENEMIES = [];
+    },
+
+    preSets :function() {
+        Bullet.preSet();
+        HitEffect.preSet();
+    },
+
+    addAllFunction: function() {
+        cc.spriteFrameCache.addSpriteFrames(res.textureOpaquePack_plist);
+        this.addKeyboardHandlers();
+        this.addMouseHandlers();
+    },
+
+    addSparks: function() {
+        var texOpaque = cc.textureCache.addImage(res.textureOpaquePack_png);
+        this._texOpaqueBatch = new cc.SpriteBatchNode(texOpaque);
+        this._sparkBatch = new cc.SpriteBatchNode(texOpaque);
+        if (cc.sys.isNative) this._sparkBatch.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+        this.addChild(this._texOpaqueBatch);
+        this.addChild(this._sparkBatch);
+    },
+
     addPlayer: function() {
-        var self = this;
-        self.player = new Player(400, 300, self);
-        self.addChild(self.player);
+        this.player = new Player(400, 300, this);
+        this.addChild(this.player);
+        this.player.scheduleUpdate();
     },
 
     addLifeLabel: function() {
-        var self = this;
-        self.lifeLabel = new lifeLabel();
-        self.lifeLabel.setKnownPlayer(self.player);
-        self.addChild(self.lifeLabel);
-        self.count = 0;
+        this.lifeLabel = new lifeLabel();
+        this.lifeLabel.setKnownPlayer(this.player);
+        this.addChild(this.lifeLabel);
+        this.count = 0;
     },
 
     addScoreLabel: function() {
