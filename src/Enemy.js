@@ -15,7 +15,7 @@ var Enemy = cc.Sprite.extend({
 
     update: function() {
         if (this.HP <= 0) {
-            console.log('hit');
+            g_sharedGameLayer.scoreLabel.getScore(5);
             this.removeFromParent();
             this.IsHit = true;
         }

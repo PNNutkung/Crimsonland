@@ -50,9 +50,9 @@ var Player = cc.Sprite.extend({
         }
 
         if (this.HP <= 0) {
-            console.log('die');
             this.removeFromParent();
             this.IsHit = true;
+            this.HP = 0;
         }
         this.setRotation(this._currentRotation);
         this.updatePosition();
@@ -79,12 +79,15 @@ var Player = cc.Sprite.extend({
     },
 
     hurt: function() {
-        console.log('HP:' + this.HP)
         this.HP--;
     },
 
     getHitPoints: function() {
         return this.HP;
+    },
+
+    isLive: function() {
+        return this.HP > 0;
     }
 
 

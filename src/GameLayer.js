@@ -27,14 +27,11 @@ var GameLayer = cc.LayerColor.extend({
         CL.CONTAINER.HITS = [];
         CL.CONTAINER.ENEMIES = [];
 
-        this.player = new Player(400, 300, this);
-        this.addChild(this.player);
+        this.addPlayer();
         this.player.scheduleUpdate();
 
-        this.lifeLabel = new lifeLabel();
-        this.lifeLabel.setKnownPlayer(this.player);
-        this.addChild(this.lifeLabel);
-        this.count = 0;
+        this.addLifeLabel();
+        this.addScoreLabel();
 
         this.scheduleUpdate();
         return true;
@@ -48,6 +45,25 @@ var GameLayer = cc.LayerColor.extend({
             this.spawnEnemy();
             this.count = 0;
         }
+    },
+    addPlayer: function() {
+        var self = this;
+        self.player = new Player(400, 300, self);
+        self.addChild(self.player);
+    },
+
+    addLifeLabel: function() {
+        var self = this;
+        self.lifeLabel = new lifeLabel();
+        self.lifeLabel.setKnownPlayer(self.player);
+        self.addChild(self.lifeLabel);
+        self.count = 0;
+    },
+
+    addScoreLabel: function() {
+        var self = this;
+        self.scoreLabel = new scoreLabel();
+        self.addChild(self.scoreLabel);
     },
 
     spawnEnemy: function() {
@@ -94,7 +110,7 @@ var GameLayer = cc.LayerColor.extend({
             onMouseDown: function(event) {
                 var str = "Mouse Down detected, Key: " + event.getButton();
                 console.log(str);
-                if (event.getButton() == 0) {
+                if (event.getButton() == 0 && self.player.isLive() ) {
                     self.player.shoot();
                 }
             },

@@ -18,6 +18,7 @@
         "src/Bullet.js",
         "src/HitEffect.js",
         "src/Enemy.js",
-        "src/lifeLabel.js"
+        "src/lifeLabel.js",
+        "src/scoreLabel.js"
     ]
 }
