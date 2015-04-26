@@ -12,7 +12,7 @@ var GameTitle = cc.LayerColor.extend({
             res.playBtnUp_png,
             res.playBtnDown_png,
             function() {
-                cc.director.runScene(new GameLayer());
+                cc.director.runScene(new GamePlayScene());
             },this);
         this.playBtn = new cc.Menu(this.playBtn);
         this.addChild(this.playBtn);
