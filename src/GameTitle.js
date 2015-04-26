@@ -1,8 +1,11 @@
 var GameTitle = cc.LayerColor.extend({
     init: function() {
-        this.setPosition(new cc.Point(0,0));
+        this._super();
+        this.addBackground();
+    },
 
-        this.backGround = new cc.Sprite.create('picture');
+    addBackground: function() {
+        this.backGround = new cc.Sprite.create('src/images/gameTitle.png');
         this.backGround.setPosition(new cc.Point(400,300));
         this.addChild(this.backGround);
     }
