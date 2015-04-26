@@ -5,12 +5,13 @@ var res = {
 	textureOpaquePack_png : 'res/images/textureOpaquePack.png',
 	playBtnUp_png : "res/images/playBtnUp.png",
 	playBtnDown_png : "res/images/playBtnDown.png",
-	menuBtnUp_png : "res/images/menuBtnUp_png.png",
+	menuBtnUp_png : "res/images/menuBtnUp.png",
 	menuBtnDown_png : "res/images/menuBtnDown.png",
 	retryBtnUp_png : "res/images/retryBtnUp.png",
 	retryBtnDown_png : "res/images/retryBtnDown.png",
 	creditsBtnUp_png : "res/images/creditsBtnUp.png",
-	creditsBtnDown_png : "res/images/creditsBtnDown.png"
+	creditsBtnDown_png : "res/images/creditsBtnDown.png",
+	gameTitle_png : "res/images/gameTitle.png"
 };
 
 var g_resources = [

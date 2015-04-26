@@ -148,7 +148,7 @@ var GameLayer = cc.LayerColor.extend({
     }
 });
 
-var StartScene = cc.Scene.extend({
+/*var StartScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
         var layer = new GameLayer();
@@ -156,7 +156,7 @@ var StartScene = cc.Scene.extend({
         this.addChild(layer);
     }
 
-});
+});*/
 
 GameLayer.prototype.addBullet = function(bullet) {
     this._texOpaqueBatch.addChild(bullet);
