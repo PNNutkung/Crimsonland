@@ -16,6 +16,7 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreMax = ScoreRecord;
         this.addScoreLabel();
         this.addMaxScoreLabel();
+        this.initSound();
         this.scheduleUpdate();
         return true;
     },
@@ -56,7 +57,12 @@ var GameLayer = cc.LayerColor.extend({
             if(this.scoreLabel.getPlayerScore()>ScoreRecord){
                ScoreRecord = this.scoreLabel.getPlayerScore();
            }
+        cc.audioEngine.stopMusic( res.dancing_mp3);
         cc.director.runScene( new GameOverScene() );
+    },
+
+    initSound:function(){
+        cc.audioEngine.playMusic( res.dancing_mp3, true );
     },
 
     defineTheScreenRect: function() {

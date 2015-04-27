@@ -11,7 +11,12 @@ var res = {
 	retryBtnDown_png : "res/images/retryBtnDown.png",
 	creditsBtnUp_png : "res/images/creditsBtnUp.png",
 	creditsBtnDown_png : "res/images/creditsBtnDown.png",
-	gameTitle_png : "res/images/gameTitle.png"
+	gameTitle_png : "res/images/gameTitle.png",
+
+	//sound
+	fear_mp3 : "res/music/fear.mp3",
+	dancing_mp3 : "res/music/Dancing Christmas in the 13th Month.mp3",
+	stranger_aeons_mp3 : "res/music/Stranger Aeons.mp3"
 };
 
 var g_resources = [

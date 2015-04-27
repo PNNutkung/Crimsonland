@@ -3,6 +3,7 @@ var GameTitle = cc.LayerColor.extend({
         this.setPosition(new cc.Point(0,0));
         this.addBackground();
         this.addPlayButton();
+        this.playSoundBG();
         this.scheduleUpdate();
         return true;
     },
@@ -12,6 +13,8 @@ var GameTitle = cc.LayerColor.extend({
             res.playBtnUp_png,
             res.playBtnDown_png,
             function() {
+                cc.audioEngine.stopMusic( res.fear_mp3 );
+                isPlayingSong = false;
                 cc.director.runScene(new GamePlayScene());
             },this);
         this.playBtn = new cc.Menu(this.playBtn);
@@ -33,6 +36,12 @@ var GameTitle = cc.LayerColor.extend({
         this.addChild(this.bg);
     },
 
+    playSoundBG:function(){
+      if(!isPlayingSong){
+        cc.audioEngine.playMusic( res.fear_mp3 , true );
+        isPlayingSong = true;
+      }
+    },
     update: function() {
 
     }

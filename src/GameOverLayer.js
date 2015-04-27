@@ -13,7 +13,7 @@ var GameOverLayer = cc.LayerColor.extend({
         this.createScoreLabel();
         this.createBackButton();
         this.createRetryButton();
-        //cc.audioEngine.playMusic( res.lostVilage_mp3, true );
+        cc.audioEngine.playMusic( res.stranger_aeons_mp3, true );
         return true;
     },
     createScoreLabel:function(){
@@ -28,7 +28,7 @@ var GameOverLayer = cc.LayerColor.extend({
     		 res.menuBtnUp_png,
     		 res.menuBtnDown_png,
     		function () {
-                //cc.audioEngine.stopMusic( res.lostVilage_mp3);
+                cc.audioEngine.stopMusic( res.stranger_aeons_mp3);
                 //cc.audioEngine.playEffect( res.press_mp3 );
     			cc.director.runScene(new StartScene() );
     		}, this);
@@ -42,7 +42,7 @@ var GameOverLayer = cc.LayerColor.extend({
     		res.retryBtnUp_png,
     		res.retryBtnDown_png,
     		function () {
-                //cc.audioEngine.stopMusic( res.lostVilage_mp3);
+                cc.audioEngine.stopMusic( res.stranger_aeons_mp3);
                 //cc.audioEngine.playEffect( res.press_mp3 );
     			cc.director.runScene(new GamePlayScene() );
     		}, this);
