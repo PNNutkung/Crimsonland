@@ -51,6 +51,7 @@ var Bullet = cc.Sprite.extend({
                 selEnemy.hurt();
                 this.destroy();
                 g_sharedGameLayer.scoreLabel.getScore(1);
+                g_sharedGameLayer.SCORE+=1;
             }
         }
     },

@@ -19,7 +19,7 @@ var GameOverLayer = cc.LayerColor.extend({
     createScoreLabel:function(){
     	this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 45 );
         this.scoreLabel.setPosition(screenWidth/2,screenHeight/2);
-        this.scoreLabel.setString("Your Score : "/*+SCORE*/);
+        this.scoreLabel.setString("Your Score : "+SCORE);
         this.addChild(this.scoreLabel);
 
     },

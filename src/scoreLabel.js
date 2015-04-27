@@ -11,5 +11,9 @@ var scoreLabel = cc.LabelTTF.extend({
     getScore: function( score ) {
         this.score += score;
         this.scoreLabel.setString( 'Score: '+ this.score );
+    },
+
+    getPlayerScore: function() {
+        return this.score;
     }
 });

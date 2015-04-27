@@ -13,7 +13,9 @@ var GameLayer = cc.LayerColor.extend({
         this.preSets();
         this.addPlayer();
         this.addLifeLabel();
+        this.scoreMax = ScoreRecord;
         this.addScoreLabel();
+        this.addMaxScoreLabel();
         this.scheduleUpdate();
         return true;
     },
@@ -22,6 +24,7 @@ var GameLayer = cc.LayerColor.extend({
         if( !this.player.isLive() ){
             this.endGame();
         }
+        this.scoreMax = this.scoreLabel.getPlayerScore();
         this.lifeLabel.getHit();
         this.count += dt;
         this.removeInactiveUnit(dt);
@@ -29,6 +32,13 @@ var GameLayer = cc.LayerColor.extend({
             this.spawnEnemy();
             this.count = 0;
         }
+    },
+
+    addMaxScoreLabel: function() {
+        this.scoreMaxLabel = cc.LabelTTF.create( '0', 'Arial', 15 );
+        this.scoreMaxLabel.setPosition( new cc.Point( 120, 580 ) );
+        this.addChild( this.scoreMaxLabel );
+        this.scoreMaxLabel.setString("High Score : "+this.scoreMax);
     },
 
     addBackground : function() {
@@ -42,6 +52,10 @@ var GameLayer = cc.LayerColor.extend({
             selEnemy.unscheduleUpdate();
         }
         this.unscheduleUpdate();
+        SCORE = this.scoreLabel.getPlayerScore();
+            if(this.scoreLabel.getPlayerScore()>ScoreRecord){
+               ScoreRecord = this.scoreLabel.getPlayerScore();
+           }
         cc.director.runScene( new GameOverScene() );
     },
 
@@ -156,3 +170,6 @@ GameLayer.prototype.addBullet = function(bullet) {
 GameLayer.prototype.addBulletHits = function(hit, zOrder) {
     this._texOpaqueBatch.addChild(hit, zOrder);
 };
+
+var SCORE = 0;
+var ScoreRecord = 0;
