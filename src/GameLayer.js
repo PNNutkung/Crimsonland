@@ -42,6 +42,7 @@ var GameLayer = cc.LayerColor.extend({
             selEnemy.unscheduleUpdate();
         }
         this.unscheduleUpdate();
+        cc.director.runScene( new GameOverScene() );
     },
 
     defineTheScreenRect: function() {
@@ -147,16 +148,6 @@ var GameLayer = cc.LayerColor.extend({
         }, this);
     }
 });
-
-/*var StartScene = cc.Scene.extend({
-    onEnter: function() {
-        this._super();
-        var layer = new GameLayer();
-        layer.init();
-        this.addChild(layer);
-    }
-
-});*/
 
 GameLayer.prototype.addBullet = function(bullet) {
     this._texOpaqueBatch.addChild(bullet);

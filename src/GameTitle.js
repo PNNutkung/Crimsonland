@@ -18,13 +18,23 @@ var GameTitle = cc.LayerColor.extend({
         this.addChild(this.playBtn);
     },
 
+    addCreditsButton: function() {
+        this.creditsBtn = new cc.MenuItemImage(
+            res.creditsBtnUp_png,
+            res.creditsBtnDown_png,
+            function() {
+                cc.director.runScene( new CreditScene() );
+            }, this);
+
+    },
+
     addBackground: function() {
         this.bg = new MenuBackGround();
         this.addChild(this.bg);
     },
 
     update: function() {
-        
+
     }
 });
 

@@ -21,6 +21,7 @@
         "src/lifeLabel.js",
         "src/scoreLabel.js",
         "src/Background.js",
-        "src/GameTitle.js"
+        "src/GameTitle.js",
+        "src/GameOverLayer.js"
     ]
 }
