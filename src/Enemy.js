@@ -20,6 +20,7 @@ var Enemy = cc.Sprite.extend({
             g_sharedGameLayer.scoreLabel.getScore(5);
             g_sharedGameLayer.SCORE+=5;
             this.removeFromParent();
+            //this.dropItem(this._currentPosX,this._currentPosY);
             this.IsHit = true;
         }
         this._currentPosX = this.getPositionX();
@@ -29,6 +30,11 @@ var Enemy = cc.Sprite.extend({
         this.spotPlayer();
         this.followPlayer();
         this.setRotation(this._currentRotation);
+    },
+
+    dropItem: function( posX,posY) {
+        this.item = new Item( posX, posY );
+        g_sharedGameLayer.addChild(item);
     },
 
     faceToPlayer: function() {

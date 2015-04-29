@@ -136,6 +136,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     addKeyboardHandlers: function() {
+        CL.KEYS = [] ;
         var self = this;
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,

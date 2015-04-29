@@ -14,9 +14,10 @@ var res = {
 	gameTitle_png : "res/images/gameTitle.png",
 
 	//sound
-	fear_mp3 : "res/music/fear.mp3",
+	fear_mp3 : "res/music/Fear.mp3",
 	dancing_mp3 : "res/music/Dancing Christmas in the 13th Month.mp3",
-	stranger_aeons_mp3 : "res/music/Stranger Aeons.mp3"
+	stranger_aeons_mp3 : "res/music/Stranger Aeons.mp3",
+	body_collid_mp3 : "res/music/body collid.mp3"
 };
 
 var g_resources = [

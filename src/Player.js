@@ -25,6 +25,7 @@ var Player = cc.Sprite.extend({
             this._currentRotation, this.gameLayer);
         a.x = this.x;
         a.y = this.y;
+        cc.audioEngine.playEffect( res.body_collid_mp3 );
     },
 
     update: function(dt) {
