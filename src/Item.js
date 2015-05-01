@@ -1,14 +1,12 @@
 var Item = cc.Sprite.extend({
     ctor: function( posX, posY ) {
         this._super();
-        this.setPosition( posX, posY);
-        this.init();
+        this.setPosition( posX, posY );
+        this.schedule( this.destroy , 10);
     },
 
     update: function(dt) {
-        this.move();
-        this.destroy(this.player);
-        this.effectToPlayer();
+        this.effect();
     },
 
     isHit: function() {
@@ -16,8 +14,12 @@ var Item = cc.Sprite.extend({
                Math.abs(this.getPositionY() - g_sharedGameLayer.player.playerPosY()) <= 14;
     },
 
-    destroy: function(player) {
+    destroy: function() {
         this.removeFromParent();
+    },
+
+    effect: function() {
+    
     }
 
 });

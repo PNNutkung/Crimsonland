@@ -19,8 +19,8 @@ var Enemy = cc.Sprite.extend({
         if (this.HP <= 0) {
             g_sharedGameLayer.scoreLabel.getScore(5);
             g_sharedGameLayer.SCORE+=5;
+            this.dropItem(this._currentPosX,this._currentPosY);
             this.removeFromParent();
-            //this.dropItem(this._currentPosX,this._currentPosY);
             this.IsHit = true;
         }
         this._currentPosX = this.getPositionX();
@@ -33,8 +33,11 @@ var Enemy = cc.Sprite.extend({
     },
 
     dropItem: function( posX,posY) {
-        this.item = new Item( posX, posY );
-        g_sharedGameLayer.addChild(item);
+        var random = Math.floor(Math.random()*10000) + 1 ;
+        if ( random <= 3000 ) this.item = new potion( posX, posY );
+        else if ( random <= 5000) this.item = new bomb( posX, posY );
+        //else if ( random <= 70) this.item = new potion( posX, posY );
+        if( this.item != null) g_sharedGameLayer.addChild( this.item );
     },
 
     faceToPlayer: function() {

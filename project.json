@@ -23,6 +23,8 @@
         "src/Background.js",
         "src/GameTitle.js",
         "src/GameOverLayer.js",
-        "src/Item.js"
+        "src/Item.js",
+        "src/Items/potion.js",
+        "src/Items/bomb.js"
     ]
 }

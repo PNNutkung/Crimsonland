@@ -1,4 +1,5 @@
 var res = {
+	//sprite
 	Player_png : "res/images/player.png",
 	Bullet_png : "res/images/bullet.png",
 	textureOpaquePack_plist : 'res/images/textureOpaquePack.plist',
@@ -12,6 +13,8 @@ var res = {
 	creditsBtnUp_png : "res/images/creditsBtnUp.png",
 	creditsBtnDown_png : "res/images/creditsBtnDown.png",
 	gameTitle_png : "res/images/gameTitle.png",
+	potion_png : "res/images/potion.png",
+	bomb_png : "res/images/bomb.png",
 
 	//sound
 	fear_mp3 : "res/music/Fear.mp3",
