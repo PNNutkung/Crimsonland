@@ -22,6 +22,7 @@ var Enemy = cc.Sprite.extend({
             this.dropItem(this._currentPosX,this._currentPosY);
             this.removeFromParent();
             this.IsHit = true;
+            this.setPosition(new cc.Point(-100,-100));
         }
         this._currentPosX = this.getPositionX();
         this._currentPosY = this.getPositionY();

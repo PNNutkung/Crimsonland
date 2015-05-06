@@ -79,7 +79,8 @@ CL.CONTAINER = {
     SPARKS: [],
     HITS: [],
     BACKSKYS: [],
-    BACKTILEMAPS: []
+    BACKTILEMAPS: [],
+    REMOVE_ENEMIES: []
 };
 
 //bullet speed

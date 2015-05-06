@@ -15,6 +15,7 @@ var res = {
 	gameTitle_png : "res/images/gameTitle.png",
 	potion_png : "res/images/potion.png",
 	bomb_png : "res/images/bomb.png",
+	boom_png : "res/images/boom.png",
 
 	//sound
 	fear_mp3 : "res/music/Fear.mp3",

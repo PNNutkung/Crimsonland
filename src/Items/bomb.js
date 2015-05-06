@@ -1,8 +1,12 @@
 var bomb = Item.extend({
+	posX:0,
+	posY:0,
 	ctor: function( x, y ) {
 		this._super(x,y);
 		this.init();
 		this.scheduleUpdate();
+		this.boom = null;
+
 	},
 
 	init: function() {
@@ -10,21 +14,27 @@ var bomb = Item.extend({
 	},
 
 	enemyInRange: function( enemy ) {
-        return Math.abs(this.getPositionX() - enemy.getEnemyPosX() ) <= 100 &&
-               Math.abs(this.getPositionY() - enemy.getEnemyPosY() ) <= 100;
+        return Math.abs(this.getPositionX() - enemy.getEnemyPosX() ) <= 150 &&
+               Math.abs(this.getPositionY() - enemy.getEnemyPosY() ) <= 150;
     },
 
 	effect: function() {
 		if( this.isHit() ) {
-				for (var j = 0; j < CL.CONTAINER.ENEMIES.length; j++) {
-	            	selEnemy = CL.CONTAINER.ENEMIES[j];
+			this.removeFromParent();
+			this.boom = new Boom(this.getPositionX(),this.getPositionY());
+			this.boom.isHitBomb = true;
+			g_sharedGameLayer.addChild( this.boom );
+				for (var runLoop = 0; runLoop < CL.CONTAINER.ENEMIES.length; runLoop++) {
+	            	selEnemy = CL.CONTAINER.ENEMIES[runLoop];
 	            	if ( this.enemyInRange( selEnemy ) ) {
-		                selEnemy.removeFromParent();
-		                g_sharedGameLayer.scoreLabel.getScore(100);
-		                g_sharedGameLayer.SCORE+=100;
+		                selEnemy.setPosition(new cc.Point(-100,-100));
+		                for(var hp = 0;hp <= 10;hp++ ){
+		                	selEnemy.hurt();
+		                }
+		                g_sharedGameLayer.scoreLabel.getScore(50);
+		                g_sharedGameLayer.SCORE+=50;
 		            }
 	            }
-	            this.removeFromParent();
 	        }
     	}
 

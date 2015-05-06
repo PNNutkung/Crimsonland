@@ -25,6 +25,7 @@
         "src/GameOverLayer.js",
         "src/Item.js",
         "src/Items/potion.js",
-        "src/Items/bomb.js"
+        "src/Items/bomb.js",
+        "src/Effect/Boom.js"
     ]
 }
