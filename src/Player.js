@@ -45,6 +45,7 @@ var Player = cc.Sprite.extend({
             this.removeFromParent();
             this.IsHit = true;
             this.HP = 0;
+            cc.audioEngine.playEffect( res.oop_mp3 );
         }
         this.setRotation(this._currentRotation);
         this.updatePosition();

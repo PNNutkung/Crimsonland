@@ -21,12 +21,14 @@ var res = {
 	potion_png : "res/images/potion.png",
 	bomb_png : "res/images/bomb.png",
 	boom_png : "res/images/boom.png",
-
+	credit_png : "res/images/creditsPage.png",
 	//sound
 	fear_mp3 : "res/music/Fear.mp3",
 	dancing_mp3 : "res/music/Dancing Christmas in the 13th Month.mp3",
 	stranger_aeons_mp3 : "res/music/Stranger Aeons.mp3",
-	body_collid_mp3 : "res/music/body collid.mp3"
+	body_collid_mp3 : "res/music/body collid.mp3",
+	press_mp3: 'res/music/laptop_notebook_spacebar_press.mp3',
+	oop_mp3 : "res/music/oops.wav"
 };
 
 var g_resources = [

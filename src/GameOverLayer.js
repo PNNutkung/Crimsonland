@@ -29,7 +29,7 @@ var GameOverLayer = cc.LayerColor.extend({
     		 res.menuBtnDown_png,
     		function () {
                 cc.audioEngine.stopMusic( res.stranger_aeons_mp3);
-                //cc.audioEngine.playEffect( res.press_mp3 );
+                cc.audioEngine.playEffect( res.press_mp3 );
     			cc.director.runScene(new cc.TransitionFade(0.5,new StartScene()));
     		}, this);
     	this.backButton = new cc.Menu(this.backButItem);
@@ -43,7 +43,7 @@ var GameOverLayer = cc.LayerColor.extend({
     		res.retryBtnDown_png,
     		function () {
                 cc.audioEngine.stopMusic( res.stranger_aeons_mp3);
-                //cc.audioEngine.playEffect( res.press_mp3 );
+                cc.audioEngine.playEffect( res.press_mp3 );
     			cc.director.runScene(new cc.TransitionFade(0.5,new GamePlayScene()));
     		}, this);
     	this.RetryButton = new cc.Menu(this.playAgainButItem);
