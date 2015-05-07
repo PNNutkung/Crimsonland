@@ -58,7 +58,7 @@ var GameLayer = cc.LayerColor.extend({
                ScoreRecord = this.scoreLabel.getPlayerScore();
            }
         cc.audioEngine.stopMusic( res.dancing_mp3);
-        cc.director.runScene( new GameOverScene() );
+        cc.director.runScene(new cc.TransitionFade(0.5, new GameOverScene()));
     },
 
     initSound:function(){

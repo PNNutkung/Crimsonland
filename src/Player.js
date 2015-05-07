@@ -41,15 +41,6 @@ var Player = cc.Sprite.extend({
         if ((CL.KEYS[cc.KEY.d]) && this.x <= screenWidth) {
             this.x += dt * this.speed;
         }
-        if (CL.KEYS[cc.KEY.space]) {
-            this.shoot();
-        }
-        if (CL.KEYS[cc.KEY.left]) {
-            this._currentRotation -= 8;
-        } else if (CL.KEYS[cc.KEY.right]) {
-            this._currentRotation += 8;
-        }
-
         if (this.HP <= 0) {
             this.removeFromParent();
             this.IsHit = true;

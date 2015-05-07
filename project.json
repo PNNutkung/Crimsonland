@@ -26,6 +26,7 @@
         "src/Item.js",
         "src/Items/potion.js",
         "src/Items/bomb.js",
-        "src/Effect/Boom.js"
+        "src/Effect/Boom.js",
+        "src/HowToPage.js"
     ]
 }

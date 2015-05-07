@@ -37,7 +37,6 @@ var Enemy = cc.Sprite.extend({
         var random = Math.floor(Math.random()*10000) + 1 ;
         if ( random <= 3000 ) this.item = new potion( posX, posY );
         else if ( random <= 5000) this.item = new bomb( posX, posY );
-        //else if ( random <= 70) this.item = new potion( posX, posY );
         if( this.item != null) g_sharedGameLayer.addChild( this.item );
     },
 
