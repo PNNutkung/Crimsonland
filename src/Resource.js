@@ -27,7 +27,8 @@ var res = {
 	dancing_mp3 : "res/music/Dancing Christmas in the 13th Month.mp3",
 	stranger_aeons_mp3 : "res/music/Stranger Aeons.mp3",
 	body_collid_mp3 : "res/music/body collid.mp3",
-	press_mp3: 'res/music/laptop_notebook_spacebar_press.mp3',
+	press_mp3 : 'res/music/laptop_notebook_spacebar_press.mp3',
+	boom_mp3 : 'res/music/explosion.mp3',
 	oop_mp3 : "res/music/oops.wav"
 };
 

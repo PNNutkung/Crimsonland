@@ -23,6 +23,7 @@ var bomb = Item.extend({
 			this.removeFromParent();
 			this.boom = new Boom(this.getPositionX(),this.getPositionY());
 			this.boom.isHitBomb = true;
+			cc.audioEngine.playEffect(res.boom_mp3);
 			g_sharedGameLayer.addChild( this.boom );
 				for (var runLoop = 0; runLoop < CL.CONTAINER.ENEMIES.length; runLoop++) {
 	            	selEnemy = CL.CONTAINER.ENEMIES[runLoop];
