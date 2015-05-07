@@ -12,10 +12,10 @@ var potion = Item.extend({
 	effect: function() {
 		if ( this.isHit() ) {
 			this.removeFromParent();
+			cc.audioEngine.playEffect(res.heal_mp3);
 			g_sharedGameLayer.player.HP += 10;
 			if(g_sharedGameLayer.player.HP > 100) g_sharedGameLayer.player.HP = 100;
 		}
 	}
-
 
 });

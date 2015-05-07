@@ -46,6 +46,5 @@ var Boom = cc.Sprite.extend({
             	this.removeFromParent();
             }
         }
-
     }
 });

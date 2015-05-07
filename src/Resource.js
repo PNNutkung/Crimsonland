@@ -29,6 +29,7 @@ var res = {
 	body_collid_mp3 : "res/music/body collid.mp3",
 	press_mp3 : 'res/music/laptop_notebook_spacebar_press.mp3',
 	boom_mp3 : 'res/music/explosion.mp3',
+	heal_mp3 : "res/music/Heal.wav",
 	oop_mp3 : "res/music/oops.wav"
 };
 
