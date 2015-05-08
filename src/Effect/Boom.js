@@ -5,13 +5,11 @@ var Boom = cc.Sprite.extend({
 	ctor: function( x, y ) {
 		this._super();
 		this.setPosition( x, y );
-		console.log('create boom');
 		this.isHitBomb = false;
 		this.initWithFile(res.boom_png);
 		this.isOn = false;
         this.scaleX = 0;
         this.scaleY = 0;
-		this.scheduleUpdate();
 		this.posX = x;
 		this.opacity = 255;
 		this.posY = y;

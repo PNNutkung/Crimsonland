@@ -1,55 +1,48 @@
 var HitEffect = cc.Sprite.extend({
-    active: true,
-    ctor: function() {
-        this._super("#hit.png");
-        this.setBlendFunc(cc.SRC_ALPHA, cc.ONE);
+    posX:0,
+    posY:0,
+    count:0,
+    ctor: function( x, y ) {
+        this._super();
+        this.initWithFile(res.boom_png);
+        this.setPosition( x, y );
+        this.isHitEnemy = false;
+        this.isOn = false;
+        this.scaleX = 0;
+        this.scaleY = 0;
+        this.posX = x;
+        this.opacity = 255;
+        this.posY = y;
+        this.scheduleUpdate();
     },
 
-    reset: function(x, y, rotation, scale) {
-        this.attr({
-            x: x,
-            y: y,
-            rotation: rotation,
-            scale: scale
-        });
-        this.runAction(cc.scaleBy(0.3, 2, 2));
-        this.runAction(cc.sequence(cc.fadeOut(0.3), cc.callFunc(this.destroy, this)));
+    update: function() {
+        this.setScale(this.scaleX,this.scaleY);
+        this.bulletBoom();
+        this.setOpacity(this.opacity);
     },
 
-    destroy: function() {
-        this.visible = false;
-        this.active = false;
-    }
-});
-
-HitEffect.getOrCreateHitEffect = function(x, y, rotation, scale) {
-    var selChild = null;
-    for (var j = 0; j < CL.CONTAINER.HITS.length; j++) {
-        selChild = CL.CONTAINER.HITS[j];
-        if (selChild.active == false) {
-            selChild.visible = true;
-            selChild.active = true;
-            selChild.reset(x, y, rotation, scale);
-            return selChild;
+    bulletBoom: function() {
+        if (this.isHitEnemy) {
+            this.scaleX += 0.05;
+            this.scaleY += 0.05;
+            if (this.scaleX >= 0.3 && this.scaleY >= 0.3) {
+                this.isHitEnemy = false;
+                this.count = 1;
+            }
+        }
+         else {
+            this.scaleX -= 0.025;
+            this.scaleY -= 0.025;
+            this.opacity -= 25.5;
+            if (this.scaleX <= 0  && this.scaleY <= 0.2) {
+                this.scaleX = 0;
+                this.scaleY = 0;
+                
+            }
+            else if(this.count >= 1 && this.opacity <= 0){
+                this.removeFromParent();
+            }
         }
     }
-    selChild = HitEffect.create();
-    selChild.reset(x, y, rotation, scale);
-    return selChild;
-};
-
-HitEffect.create = function() {
-    var hitEffect = new HitEffect();
-    g_sharedGameLayer.addBulletHits(hitEffect, 9999);
-    CL.CONTAINER.HITS.push(hitEffect);
-    return hitEffect;
-};
-
-HitEffect.preSet = function() {
-    var hitEffect = null;
-    for (var i = 0; i < 10; i++) {
-        hitEffect = HitEffect.create();
-        hitEffect.setVisible(false);
-        hitEffect.active = false;
-    }
-};
+});

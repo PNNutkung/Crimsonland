@@ -77,7 +77,6 @@ var GameLayer = cc.LayerColor.extend({
 
     preSets :function() {
         Bullet.preSet();
-        HitEffect.preSet();
     },
 
     addAllFunction: function() {

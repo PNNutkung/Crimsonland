@@ -21,6 +21,7 @@ var Bullet = cc.Sprite.extend({
         this.xVelocity = bulletSpeed * Math.cos(this._shotAngle);
         this.yVelocity = bulletSpeed * Math.sin(this._shotAngle);
         this.gameLayer = layer;
+        this.hitFX = null;
         this.attackMode = attackMode;
     },
 
@@ -49,6 +50,7 @@ var Bullet = cc.Sprite.extend({
                     this.getBulletPosY()) &&
                 !selEnemy.IsHit) {
                 selEnemy.hurt();
+                this.callFX(selEnemy);
                 this.destroy();
                 g_sharedGameLayer.scoreLabel.getScore(1);
                 g_sharedGameLayer.SCORE+=1;
@@ -76,8 +78,13 @@ var Bullet = cc.Sprite.extend({
         return (Math.abs(enemyPosX - bulletPosX) < 12 && Math.abs(enemyPosY - bulletPosY) < 12);
     },
 
+    callFX: function(enemy) {
+        this.hitFX = new HitEffect(enemy.getEnemyPosX(),enemy.getEnemyPosY());
+        this.hitFX.isHitEnemy = true;
+        g_sharedGameLayer.addChild( this.hitFX );
+    },
+
     destroy: function() {
-        var explode = HitEffect.getOrCreateHitEffect(this.x, this.y, Math.random() * 360, 0.75);
         this.active = false;
         this.visible = false;
     },

@@ -6,7 +6,6 @@ var bomb = Item.extend({
 		this.init();
 		this.scheduleUpdate();
 		this.boom = null;
-
 	},
 
 	init: function() {
