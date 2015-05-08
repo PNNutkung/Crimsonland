@@ -5,7 +5,7 @@ var Enemy = cc.Sprite.extend({
     HP: 15,
     ctor: function(x, y) {
         this._super();
-        var sprites = ['res/images/enemy.png','res/images/enemy2.png','res/images/enemy3.png','res/images/enemy4.png'];
+        var sprites = [zombie1_png,zombie2_png,zombie3_png,zombie4_png];
         var randomNum = Math.floor(Math.random()*4) ;
         this.initWithFile(sprites[randomNum]);
         this.setPosition(x, y);

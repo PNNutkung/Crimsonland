@@ -8,7 +8,7 @@ var Player = cc.Sprite.extend({
     HP: 100,
     ctor: function(x, y, layer) {
         this._super();
-        this.initWithFile('res/images/player.png');
+        this.initWithFile(res.Player_png);
         this.x = x;
         this.y = y;
         this.setTag = "player";

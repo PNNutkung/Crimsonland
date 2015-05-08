@@ -156,8 +156,6 @@ var GameLayer = cc.LayerColor.extend({
                 self.player.handleTouchMove(event);
             },
             onMouseDown: function(event) {
-                var str = "Mouse Down detected, Key: " + event.getButton();
-                console.log(str);
                 if (event.getButton() == 0 && self.player.isLive() ) {
                     self.player.shoot();
                 }

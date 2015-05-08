@@ -22,6 +22,11 @@ var res = {
 	bomb_png : "res/images/bomb.png",
 	boom_png : "res/images/boom.png",
 	credit_png : "res/images/creditsPage.png",
+	backGround_png : "res/images/background.png",
+	zombie1_png : 'res/images/enemy.png',
+	zombie2_png : 'res/images/enemy2.png',
+	zombie3_png : 'res/images/enemy3.png',
+	zombie4_png : 'res/images/enemy4.png',
 	//sound
 	fear_mp3 : "res/music/Fear.mp3",
 	dancing_mp3 : "res/music/Dancing Christmas in the 13th Month.mp3",
